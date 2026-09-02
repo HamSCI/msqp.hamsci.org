@@ -55,4 +55,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **Numbers kept out of the new section 1 opener** (W10) so section 2 remains the single statement of the 280-million-line and three-to-four-month figures. "Tens of thousands of receivers" was considered for PSKReporter and dropped as unsourced.
   - **W14 on the rewritten section 1**: 35 sentences, median 21 words, one over 50 and it is the list of research questions.
   - **Published artifact page not updated**: the republish of the shared "MSQP Capstone Proposal" page was denied by the auto-mode permission classifier. The updated HTML is built in the session scratchpad; path recorded in the session note. Live page shows pre-review text until NAF republishes.
-- **Git Hash**: [pending]
+- **Git Hash**: c3f951f
