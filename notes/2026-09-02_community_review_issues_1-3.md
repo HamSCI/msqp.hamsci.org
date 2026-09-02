@@ -113,12 +113,10 @@ draft replies"*. This note records the verification, the edits, and what is stil
 3. ~~Post the three replies~~ Done 22:28 UTC on NAF's instruction; URLs in
    `2026-09-02_issue_replies_1-3.md`. All three issues remain open for Robert's re-read and NAF's
    closing (R7, H7).
-4. **Published artifact page** "MSQP Capstone Proposal",
-   https://claude.ai/code/artifact/612b740e-294e-4c7e-ac3a-fbcc92292be9, was synchronized to the
-   document by the earlier session and is shared by link. An updated HTML mirroring all of the
-   above was built this session at
-   `/tmp/claude-491543495/-scratch-w2naf-code-msqp-hamsci-org/ef784bba-4592-40cd-81b9-0e6fdd728155/scratchpad/msqp_capstone_proposal.html`,
-   but the republish was denied by the auto-mode permission classifier (the page is outward-facing).
-   **Still open**: NAF republishes, or tells the assistant to in an interactive session. Until then
-   the live page shows the pre-review text.
+4. ~~Published artifact page~~ Done. "MSQP Capstone Proposal",
+   https://claude.ai/code/artifact/612b740e-294e-4c7e-ac3a-fbcc92292be9, republished 2026-09-02
+   on NAF's explicit instruction ("update the artifact") after two earlier attempts were denied by
+   the auto-mode permission classifier. Content mirrors c3f951f (section 1 rewrite, R1/R2 note,
+   glossary as section 11, references as section 12, link fix). Viewers of the shared link may see
+   a pinned earlier version; re-pin in the artifact view if Robert is to see the new text there.
 5. The two pre-existing W4 hits (lines 58, 185) for the tightening pass.
