@@ -11,8 +11,13 @@ Posted comments:
 - #2: https://github.com/HamSCI/msqp.hamsci.org/issues/2#issuecomment-5517324884
 - #3: https://github.com/HamSCI/msqp.hamsci.org/issues/3#issuecomment-5517325046
 
-The texts below are the drafts as written before posting; the posted versions differ only in the
-trailer wording above and in reply 1's resolved SHA link.
+Edited in place 2026-09-02 ~22:32 UTC on NAF's instruction ("make sure the comments ask Robert to
+close the issue if he is happy with the result, or comment back if he is not"). Each comment now
+ends, before the trailer: "If you are happy with the result, please close this issue. If not,
+comment back and say what still needs attention."
+
+The texts below are the drafts as written before posting; the posted versions differ in the
+trailer wording above, in reply 1's resolved SHA link, and in the closing request.
 
 Issues: https://github.com/HamSCI/msqp.hamsci.org/issues
 
