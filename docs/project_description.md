@@ -11,19 +11,23 @@
 | **Duration** | Two semesters (Fall 2026 – Spring 2027) |
 | **Disciplines** | Full-stack web development, REST API design, database and schema design, data engineering and ETL, geospatial data, DevOps, software testing |
 
+*This description is written for computer science students with no amateur radio or physics background. Radio terms are defined where they first appear and collected in the glossary (section 11).*
+
 ---
 
 ## 1. Background
 
+Six times a year, amateur radio operators around the world spend two nights listening for radio signals bounced off the ionized trails of meteors. Their software logs every contact and reports every signal heard to a public database, and the operators submit those logs and recordings afterward. Today one volunteer turns that data into scores and a results report by hand, and participants wait months to see it. This project builds the platform that does that work in days: a web application with a data pipeline, a scoring engine, a live dashboard, and a public API. The rest of this section explains the event and defines the terms used in the rest of the document. Section 2 states the problem in detail.
+
 The Ham Radio Science Citizen Investigation (HamSCI, [hamsci.org](https://hamsci.org)) is an international collaboration of amateur radio operators, scientists, and students who use the amateur radio service as a distributed scientific instrument. HamSCI runs both a permanent instrument network, the Personal Space Weather Station (PSWS), and a series of coordinated on-air campaigns in which volunteers around the world operate to a common protocol so that their observations can be compared.
 
-The **Meteor Scatter QSO Party (MSQP)** is one of those campaigns. Every day, several tons of meteoroid material enter the atmosphere and ionize at roughly 80 to 120 km altitude. Each trail forms a short-lived column of plasma that reflects radio waves, opening a propagation path between two stations that would otherwise not hear each other. The path lasts from a few milliseconds to a few seconds. Amateur operators have exploited this effect for decades, and the WSJT-X software suite's **MSK144** mode is designed for it: 72 ms frames with aggressive forward error correction, so that a single meteor "ping" can carry a complete decode.
+The **Meteor Scatter QSO Party (MSQP)** is one of those campaigns. In amateur radio, a *QSO* is a two-way contact between two stations, and a *QSO party* is an organized event in which stations make as many contacts as they can within a set window. Each station is identified by its government-issued *callsign* (W2NAF, AF8A) and located by its *grid square*, a short code such as FN21 that encodes latitude and longitude. MSQP runs six times per year, timed to major meteor showers: the Quadrantids in January, the Eta Aquariids in May, the Daytime Arietids in June, the Southern Delta Aquariids in July, the Perseids in August, and the Geminids in December. Participants operate on two frequencies, 50.260 MHz (the 6 meter band) and 28.145 MHz (the 10 meter band). Two categories of entrant take part: **two-way stations** that transmit and receive, and **monitor stations** that receive only. All stations operate from fixed locations.
 
-MSQP runs six times per year, timed to major meteor showers: the Quadrantids in January, the Eta Aquariids in May, the Daytime Arietids in June, the Southern Delta Aquariids in July, the Perseids in August, and the Geminids in December. Participants operate MSK144 on two frequencies, 50.260 MHz on the 6 meter band and 28.145 MHz on the 10 meter band. Two categories of entrant take part: **two-way stations** that transmit and receive, and **monitor stations** that receive only. All stations operate from fixed locations.
+The physics is simple to state. Every day, several tons of meteoroid material enter the atmosphere and ionize at roughly 80 to 120 km altitude. Each trail is a short-lived column of plasma that reflects radio waves, opening a path between two stations that would otherwise not hear each other. The path lasts from a few milliseconds to a few seconds, and the brief burst of signal it delivers is called a *ping*. Amateur operators have used the effect for decades. The **MSK144** mode of the free WSJT-X software is designed for it: a message is packed into a 72 ms frame with strong error correction, so that a single ping can carry a complete *decode*, a successfully received message. Two short introductions cover the science at the depth this project needs, and both are listed in section 12. *Meteor Scatter Communications: The Science Behind the Pings* (Suggs, NN4NT, 2017) is a tutorial written for amateur operators. *Meteor Scatter: An Overview* (Weitzen and Ralston, 1988) is a review paper. The team does not need to read further than those to build the platform.
 
-The campaign is designed to produce research data, and the operating guidelines reflect that. Stations equipped for both bands alternate between them at 20-minute intervals (xx:00, xx:20, xx:40), which gives near-simultaneous 6 and 10 meter coverage of the same paths. Operators with directional antennas coordinate their transmit slots by heading, with east-pointing stations transmitting on even minutes and west-pointing stations on odd minutes. Participants are asked to disable receiver AGC, because automatic gain control destroys the amplitude information needed to measure how a meteor ping decays. Every station is asked to report to [PSKReporter](https://pskreporter.info), and to archive its raw WSJT-X audio recordings.
+Every MSQP station produces three kinds of data, and all three matter to this project. First, WSJT-X automatically reports every station it decodes to [PSKReporter](https://pskreporter.info), a public service that aggregates such reports from receivers worldwide. Each report, called a *spot*, records that receiver A heard station B at a given time and frequency with a given signal strength. Second, WSJT-X writes a log of the operator's completed contacts in *ADIF* (Amateur Data Interchange Format), a plain-text tagged format that every logging program reads, alongside a running text file, `ALL.TXT`, of every message decoded. Third, participants are asked to keep the raw audio recordings (WAV files) that WSJT-X saves, and to archive them on Zenodo so that researchers can study the pings themselves. Spots and logs are the inputs to scoring. The audio archive is the input to the science.
 
-That data feeds a defined science program. The HamSCI [MSQP research questions](https://github.com/HamSCI/MSQP) ask what factors influence meteor scatter propagation, how propagation differs between HF and VHF, how long useful meteor scatter propagation lasts as a function of frequency and path length, what the minimum viable station is, and how meteor scatter can be distinguished from other propagation modes. Work is already underway against them. A four-class machine-learning classifier developed at Scranton separates underdense meteor scatter, overdense meteor scatter, aircraft scatter, and noise in participant audio recordings, and the HamSCI [`meteor-scatter`](https://github.com/HamSCI/meteor-scatter) client turns a PSWS station into an automated MSK144 monitor.
+That data feeds a defined science program. The HamSCI [MSQP research questions](https://github.com/HamSCI/MSQP/blob/main/MSQP%20Research%20Questions.pdf) ask what factors influence meteor scatter propagation, how propagation differs between HF and VHF (the 10 and 6 meter bands, respectively), how long useful meteor scatter propagation lasts as a function of frequency and path length, what the minimum viable station is, and how meteor scatter can be distinguished from other propagation modes. Work is already underway against them. A four-class machine-learning classifier developed at Scranton separates two regimes of meteor scatter (underdense and overdense trails), aircraft scatter, and noise in participant audio recordings, and the HamSCI [`meteor-scatter`](https://github.com/HamSCI/meteor-scatter) client turns a PSWS station into an automated MSK144 monitor.
 
 ## 2. The Gap This Project Fills
 
@@ -128,6 +132,8 @@ These are the advisor's and stakeholder's initial targets. Refining them into a 
 | R12 | **Graceful degradation.** MSQP runs on the calendar the sky sets. A failure in any automated component must not lose participant data and must not block the event. Ingest accepts submissions when scoring is down; organizers retain an export path to the current manual workflow. |
 | R13 | **Privacy, licensing, and accessibility.** Callsigns and grid squares are public by amateur radio convention; email addresses, street addresses, and personal details are not, and must never appear in public pages, API responses, or bulk exports. Contributed data carries a clearly stated open license. The interface meets WCAG 2.2 level AA and works on a phone, because operators check it at four in the morning from the shack. |
 
+**On R1 and R2.** The operating conventions are part of the event definition, and the registry and the registration form must capture them. Stations equipped for both bands alternate between them every 20 minutes (xx:00, xx:20, xx:40), which gives near-simultaneous 6 and 10 meter coverage of the same paths. Operators with directional antennas coordinate their transmit slots by heading: east-pointing stations transmit on even minutes and west-pointing stations on odd minutes. Participants are asked to disable receiver AGC (automatic gain control), because it destroys the amplitude information needed to measure how a ping decays. The first two conventions shape what the event registry publishes and what the dashboard shows. The third is a science requirement that the platform should carry into the guidance it gives participants.
+
 **On R4.** The volume figure is the requirement that most often gets designed past. Read it as a systems requirement: 280 million lines needs a deliberate storage and query design, and it will defeat anything that scans the whole table to render a page. The team is to measure the real data early in semester 1, before committing to a storage design, and to record the measurement in the requirements specification.
 
 **On R5.** The current scoring rules exist as AF8A's practice and as the published results reports; they are not written down as a specification anywhere. Extracting them, in conversation with AF8A, and writing them down as an unambiguous, testable specification is a genuine piece of requirements engineering and is expected to take real effort. Do not guess at them from the published tables.
@@ -225,12 +231,37 @@ This project is grant funded. Significant resources are available to help studen
 - Mentorship from the advisor and from HamSCI volunteer software engineers.
 - Claude Code accounts for each team member, for use in design, software development, and documentation. AI use must follow University of Scranton academic integrity policy and the course instructor's rules, including disclosure of AI assistance in project reports.
 
-## 11. References
+## 11. Glossary
+
+| Term | Meaning |
+|---|---|
+| **ADIF** | Amateur Data Interchange Format. A plain-text, tagged file format for contact logs, read and written by every amateur radio logging program. WSJT-X writes one as `wsjtx_log.adi`. |
+| **AGC** | Automatic gain control. A receiver circuit that levels signal volume. MSQP asks operators to turn it off so that the true amplitude of each ping is recorded. |
+| **`ALL.TXT`** | A running text file in which WSJT-X records every message it decodes, whether or not it became a contact. |
+| **Band** | A range of frequencies allocated to amateur radio, named by approximate wavelength. MSQP uses the 6 meter band (50.260 MHz) and the 10 meter band (28.145 MHz). |
+| **Callsign** | A station's government-issued identifier, such as W2NAF or AF8A. Public by convention. |
+| **Decode** | A message successfully received and error-corrected by WSJT-X. |
+| **DOI** | Digital Object Identifier. A permanent citable identifier that Zenodo assigns to each deposit. |
+| **Grid square** | A Maidenhead locator: a four- or six-character code (FN21, FN21hg) that encodes a station's latitude and longitude. Public by convention. |
+| **HF, VHF** | High frequency (3 to 30 MHz) and very high frequency (30 to 300 MHz). The 10 meter band is HF; the 6 meter band is VHF. |
+| **Monitor station** | An MSQP entrant that receives only and reports what it hears. |
+| **MSK144** | The WSJT-X digital mode designed for meteor scatter. Packs a message into a 72 ms frame so that a single ping can carry it. |
+| **Ping** | A brief burst of signal, milliseconds to seconds long, reflected from a meteor trail. |
+| **PSKReporter** | A public service that aggregates spots uploaded automatically by receiving software worldwide. |
+| **PSWS** | Personal Space Weather Station. HamSCI's network of volunteer-hosted scientific radio receivers. |
+| **QSO** | A two-way radio contact between two stations. A *QSO party* is an organized on-air event built around making contacts. |
+| **Spot** | A report that receiver A decoded station B at a given time, frequency, and signal strength. |
+| **Two-way station** | An MSQP entrant that transmits and receives. |
+| **UTC** | Coordinated Universal Time. All MSQP event windows and logs use it. |
+| **WSJT-X** | Free, open-source software for weak-signal digital modes, including MSK144. It produces the logs, `ALL.TXT`, spots, and audio recordings this project ingests. |
+| **Zenodo** | An open research data repository operated by CERN. MSQP audio recordings are deposited in its HamSCI community. |
+
+## 12. References
 
 1. HamSCI Meteor Scatter QSO Party: https://hamsci.org/msqp
 2. MSQP Operating Guidelines: https://hamsci.org/msqp-rules
 3. MSQP How-To Guide: https://hamsci.org/msqp-how
-4. MSQP research questions and reference material: https://github.com/HamSCI/MSQP
+4. MSQP research questions: https://github.com/HamSCI/MSQP/blob/main/MSQP%20Research%20Questions.pdf (repository with reference material: https://github.com/HamSCI/MSQP)
 5. December 2025 MSQP results: https://hamsci.org/Dec-2025-MSQP-results
 6. August 2025 MSQP results: https://hamsci.org/Aug-2025-MSQP-results
 7. HamSCI `meteor-scatter` MSK144 monitoring client: https://github.com/HamSCI/meteor-scatter
@@ -238,7 +269,9 @@ This project is grant funded. Significant resources are available to help studen
 9. PSKReporter: https://pskreporter.info
 10. Zenodo, HamSCI community: https://zenodo.org
 11. 2027 HamSCI Workshop, 17–18 April 2027, University of Scranton: https://hamsci.org/hamsci2027
-12. McKinley, D. W. R. (1961), *Meteor Science and Engineering*, McGraw-Hill, New York.
+12. Suggs, R. M., NN4NT (2017), *Meteor Scatter Communications: The Science Behind the Pings*, tutorial presented at the Huntsville Hamfest, 19 August 2017. NASA Technical Reports Server document 20170009030: https://ntrs.nasa.gov/citations/20170009030
+13. Weitzen, J. A., and W. T. Ralston (1988), Meteor scatter: An overview, *IEEE Transactions on Antennas and Propagation*, 36(12), 1813–1819. Copy in the HamSCI MSQP repository (reference 4).
+14. McKinley, D. W. R. (1961), *Meteor Science and Engineering*, McGraw-Hill, New York.
 
 ---
 

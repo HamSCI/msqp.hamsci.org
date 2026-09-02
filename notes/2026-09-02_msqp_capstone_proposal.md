@@ -68,7 +68,7 @@ Two framing choices worth preserving:
 
 ## Verified facts (do not re-derive)
 
-Sources are listed in section 11 of the project description.
+Sources are listed in section 12 of the project description (section 11 is the glossary, added 2026-09-02).
 
 - MSK144 only; 50.260 MHz (6 m) and 28.145 MHz (10 m).
 - Six events per year: Quadrantids, Eta Aquariids, Daytime Arietids, Southern Delta Aquariids, Perseids, Geminids.

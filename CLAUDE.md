@@ -20,7 +20,7 @@ The work is proposed as a two-semester Computer Science senior capstone project 
 Replace a three-to-four-month manual scoring and publication cycle with a deployed, tested, documented platform that runs a live MSQP event end to end and publishes results within a week, while keeping the organizer in control of every score and keeping the manual path available as a fallback.
 
 ## MSQP Domain Facts
-Facts a session should not have to re-derive. All are verified against the sources in section 11 of `docs/project_description.md`.
+Facts a session should not have to re-derive. All are verified against the sources in section 12 of `docs/project_description.md`.
 
 - **Mode**: MSK144 only. **Frequencies**: 50.260 MHz (6 m), 28.145 MHz (10 m).
 - **Six events per year**, timed to the Quadrantids (Jan), Eta Aquariids (May), Daytime Arietids (Jun), Southern Delta Aquariids (Jul), Perseids (Aug), Geminids (Dec).
