@@ -24,4 +24,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **Corrected a premise in NAF's request.** He described AF8A as managing MSQP "at msqp.hamsci.org". That hostname does not resolve (NXDOMAIN as of this session), and the `HamSCI/msqp.hamsci.org` repository exists but has no commits. The proposal therefore treats msqp.hamsci.org as the deployment target the project creates, and does not describe it as an existing site.
   - **Scoring rules were not invented.** MSQP's scoring rules exist as AF8A's practice and are not published as a specification. R5 and its accompanying note direct the team to extract and write them down with AF8A, and explicitly warn against inferring them from the published result tables.
   - **Style compliance**: checked against the W conventions. Zero em dashes in prose; 51 body sentences with a median of 19 words, four over 40 (three of which are lists) and two over 50 (both lists, permitted under W14); W4 antithesis patterns swept and rewritten positively.
-- **Git Hash**: [pending]
+- **Git Hash**: 12c9698
