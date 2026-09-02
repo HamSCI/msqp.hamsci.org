@@ -9,7 +9,7 @@ The work is proposed as a two-semester Computer Science senior capstone project 
 **Primary stakeholder**: Gary Mikitin, AF8A, HamSCI volunteer; MSQP organizer and scorer
 **Advisory**: HamSCI Meteor Scatter Working Group; HamSCI volunteer software community; The University of Scranton Amateur Radio Club (W3USR)
 **Funder**: Supports the HamSCI PSWS / DASI effort, funded by NSF grants AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, and OPP-2332427; NASA grants 80NSSC23K1322, 80NSSC25K7026, and 80NSSC26K0051; and Frankford Radio Club and ARDC grants (per the acknowledgment in Frissell, *QST*, August 2026, p. 33).
-**Project period**: Two academic semesters (planned: Fall 2027 – Spring 2028)
+**Project period**: Two academic semesters (Fall 2026 – Spring 2027)
 
 **Status**: proposal stage. The Computer Science faculty have not yet been approached, and no students are recruited. `docs/project_description.md` is the document that will be used to make that case.
 
@@ -30,6 +30,17 @@ Facts a session should not have to re-derive. All are verified against the sourc
 - **Scale reference**: 280 million lines of PSKReporter data captured during the December 2025 event.
 - **Latency today**: Aug 11–12 2025 event → results 16 Nov 2025. Dec 12–13 2025 event → results 15 Apr 2026.
 - **Audio archive**: participants zip WSJT-X WAV files and deposit them on Zenodo in the HamSCI community, with a hand-typed title convention (`CALL GRID YYYYMMDD-DD Meteor Scatter QSO Party`).
+
+## Fixed Calendar Anchors (project window)
+Neither calendar moves. Verified against hamsci.org.
+
+| Date | Event | Role |
+|---|---|---|
+| 13–15 December 2026 | Geminids MSQP | Shadow run (end of fall semester) |
+| 2–4 January 2027 | Quadrantids MSQP | Parallel run, the validation event (winter break) |
+| 17–18 April 2027 | [2027 HamSCI Workshop](https://hamsci.org/hamsci2027), U. of Scranton | Team presents |
+
+The next MSQP after the Quadrantids is the Eta Aquariids in May 2027, which falls at or after the end of the spring semester; its exact dates are unpublished. The Quadrantids are therefore the only live MSQP inside the course.
 
 ## Related HamSCI Repositories
 - [`HamSCI/MSQP`](https://github.com/HamSCI/MSQP) — research questions, reference literature, forward-scatter geometry figures.

@@ -19,10 +19,36 @@ Written for a fresh session with no context.
 
 | Decision | Made by | Note |
 |---|---|---|
-| Project period: Fall 2027 – Spring 2028 | NAF, asked directly | Gives a year to recruit CS faculty and students. Puts the December 2027 Geminids and January 2028 Quadrantids MSQP events inside the project window as live integration tests. |
+| ~~Project period: Fall 2027 – Spring 2028~~ | NAF, asked directly | **RETIRED 2026-09-02, superseded below. Do not act on this.** |
+| Project period: **Fall 2026 – Spring 2027** | NAF, 2026-09-02 | Supersedes the row above, which was chosen from a menu earlier the same day. Matches the QPA capstone window. See the calendar section below for what this changes. |
 | Team size: 2–3 CS students | NAF, asked directly | Matches QPA. |
 | Technology stack left open | Assistant | Named as a semester-1 trade study with maintainability-after-handoff as an explicit weighted criterion, following QPA's trade-study pattern. Prescribing a stack in a proposal would remove the most instructive design decision in the project. |
 | Scope handled by success tiers | Assistant | NAF asked for coordination and reporting, and separately that it "support the meteor scatter project". Threshold = registry, registration, ADIF ingest, scoring. Objective = PSKReporter ingest, live dashboard, Zenodo, public API, run a live event. Stretch = serving the science pipeline directly. |
+
+## Decision record: project period moved to Fall 2026 – Spring 2027
+
+> "The timeline is Fall 2026 - Spring 2027. Students are expected to present at the HamSCI workshop in Scranton April 17-18, 2027"
+> — NAF, 2026-09-02
+
+This reverses the Fall 2027 – Spring 2028 answer given earlier the same day and retires it. The 2028 workshop placeholder is resolved: the anchor is the **2027 HamSCI Workshop, 17–18 April 2027, at the University of Scranton** (verified against hamsci.org/hamsci2027).
+
+### What the new window actually contains
+
+Verified against hamsci.org/msqp. Neither calendar moves.
+
+| Date | Event | Academic collision | Role assigned |
+|---|---|---|---|
+| 13–15 December 2026 | Geminids MSQP | Very end of the fall semester | Shadow run: observe and collect |
+| 2–4 January 2027 | Quadrantids MSQP | Winter break, before spring classes | Parallel run: the validation event |
+| 17–18 April 2027 | 2027 HamSCI Workshop, Scranton | Mid-spring, before finals | Present the work |
+
+**Three consequences, all now written into section 6.**
+
+1. **The live event moved from the Geminids to the Quadrantids.** December 2026 is roughly the last week of the first semester, which is too early for a production deployment. The Geminids became a shadow run, and the objective tier's live-dashboard demonstration moved to the January Quadrantids parallel run.
+2. **The system that runs the Quadrantids must be built in the fall**, because 2–4 January precedes the spring semester. This is why the threshold tier is deliberately scoped to a replay against the already-published August and December 2025 events: it is a real, gradeable semester-1 milestone that needs no live event.
+3. **The Quadrantids are the only live MSQP inside the course.** The next event is the Eta Aquariids in May 2027, at or after the end of the spring semester; its exact dates are unpublished, so none were invented. The proposal names the May event as the natural first authoritative run for whoever maintains the platform after handoff.
+
+**Operating over winter break is a real ask** and is now stated plainly in the proposal, so that a team decides in the fall who is available for 2–4 January rather than discovering the problem in December.
 
 ## The argument the proposal makes
 
@@ -57,7 +83,7 @@ Sources are listed in section 11 of the project description.
 
 1. **`msqp.hamsci.org` does not exist yet.** The hostname returned NXDOMAIN in this session, and the `HamSCI/msqp.hamsci.org` GitHub repository has no commits. NAF's request described AF8A as managing MSQP "at msqp.hamsci.org"; the proposal treats the hostname as the deployment target the project creates. **Confirm with NAF whether AF8A works from some other surface today** (a spreadsheet, a mailbox, a hamsci.org page), because the requirements elicitation in semester 1 needs to start from whatever that surface actually is.
 2. **Meteor Scatter Working Group membership is unrecorded.** No public HamSCI page found in this session names the group or its members. The proposal names it as an advisory body on NAF's statement alone. Names and callsigns should be added once NAF supplies them.
-3. **2028 HamSCI Workshop** dates and venue are unannounced; the semester-2 plan carries a bracketed placeholder (W13).
+3. ~~**2028 HamSCI Workshop** dates and venue are unannounced.~~ **RESOLVED 2026-09-02** by the move to Fall 2026 – Spring 2027: the anchor is the 2027 workshop, 17–18 April 2027 at Scranton, verified against hamsci.org/hamsci2027. The bracketed placeholder is gone.
 4. **Development budget** carries `[Amount to be confirmed.]`, matching the same placeholder in QPA section 10.
 5. **AF8A has not seen this.** He is named as the primary stakeholder and the proposal characterizes his workflow and its costs from published artifacts. He should read and approve section 2 before this document is shown to CS faculty.
 6. **Scoring rules are unwritten.** Extracting them from AF8A's practice is called out as a semester-1 deliverable, and is the most likely place for the schedule to slip.

@@ -8,7 +8,7 @@
 | **Primary stakeholder** | Gary Mikitin, AF8A, HamSCI volunteer; MSQP organizer and scorer |
 | **Additional mentors** | HamSCI Meteor Scatter Working Group; HamSCI volunteer software community; The University of Scranton Amateur Radio Club (W3USR) |
 | **Team size** | 2–3 students (Computer Science) |
-| **Duration** | Two semesters (planned: Fall 2027 – Spring 2028) |
+| **Duration** | Two semesters (Fall 2026 – Spring 2027) |
 | **Disciplines** | Full-stack web development, REST API design, database and schema design, data engineering and ETL, geospatial data, DevOps, software testing |
 
 ---
@@ -139,34 +139,44 @@ These are the advisor's and stakeholder's initial targets. Refining them into a 
 The requirements above define the full platform. To keep the required scope honest, the advisor defines three success tiers. The two-semester plan targets the objective tier; the threshold tier alone is a complete, successful capstone.
 
 - **Threshold (a successful capstone).** Event registry, entrant registration, ADIF log ingest, and a working scoring engine with an organizer interface, deployed to a staging environment (R1, R2, R3, R5, R10 at prototype level). **The acceptance test is a replay:** load the August 2025 and December 2025 MSQP events into the system, run the scoring engine, and reproduce the scores AF8A published, with every difference explained. Reproducing a known-good human result is how the team proves the engine is right.
-- **Objective (the project goal).** The threshold system in production at msqp.hamsci.org, running a live MSQP event end to end: automated PSKReporter ingest, the live dashboard during the December 2027 Geminids event, Zenodo deposit integration, the public data API, and results published within a week of the event close (adds R4, R6, R7, R8, R9, with R11, R12, and R13 in force once the site is public).
+- **Objective (the project goal).** The threshold system in production at msqp.hamsci.org, running a live MSQP event end to end: automated PSKReporter ingest, the live dashboard during the January 2027 Quadrantids parallel run, Zenodo deposit integration, the public data API, and results published within a week of the event close (adds R4, R6, R7, R8, R9, with R11, R12, and R13 in force once the site is public).
 - **Stretch (beyond expectations).** The data catalog serving the science pipeline directly: classifier outputs surfaced per recording, PSWS `meteor-scatter` monitor stations enrolled automatically as entrants, and cross-event analytics that let a researcher compare showers, bands, and path geometries without writing code.
 
 Everything above the threshold is upside. Because the project is grant funded, significant resources are available to help the team reach the upper tiers, beyond what is normally available to capstone projects (section 10).
 
 ## 6. Two-Semester Plan
 
-The MSQP calendar is set by the sky, and it drives this schedule. Two events fall inside the project window: the **Geminids in December 2027** and the **Quadrantids in January 2028**. They are the team's live integration tests, and they cannot be moved.
+**Two fixed calendars drive this schedule, and neither of them moves.** The MSQP calendar is set by the sky, and the workshop at which the team presents is set a year in advance.
 
-### Semester 1 (Fall 2027): Requirements, Design, and Core Build
+| Date | Event | Role in the project |
+|---|---|---|
+| 13–15 December 2026 | Geminids MSQP | Shadow run: observe and collect |
+| 2–4 January 2027 | Quadrantids MSQP | Parallel run: the validation event |
+| 17–18 April 2027 | [HamSCI Workshop](https://hamsci.org/hamsci2027), University of Scranton | Present the work |
+
+Map these onto the University's academic calendar in the first week of the project, because two of the three fall awkwardly. The Geminids land at the very end of the fall semester, and the Quadrantids land in the winter break before spring classes begin. **Operating during the break is a real commitment**, and the team should decide early who is available and plan the January run around them.
+
+### Semester 1 (Fall 2026): Requirements, Design, and Core Build
 - Requirements elicitation with AF8A and the HamSCI Meteor Scatter Working Group; extract and write down the scoring rules (R5); finalize the specification.
 - Data investigation: obtain real PSKReporter exports and real ADIF submissions from past events, measure them, and design the schema and storage strategy against the measured volume (R4).
 - Technology selection, justified in a written trade study: language and framework, database, mapping and visualization libraries, hosting and deployment model. Maintainability by volunteers after handoff is an explicit criterion, weighted accordingly.
 - Build the core: event registry, entrant registration, ADIF ingest, scoring engine, organizer interface.
-- **Replay validation** against the August 2025 and December 2025 events (the threshold acceptance test).
-- **Observe the December 2027 Geminids MSQP.** Participate as operators or monitors if licensed, collect the event's data by the current manual process, and use it as the first real end-to-end test case. Watching the existing workflow under load is worth more than any amount of interviewing.
-- **Milestones:** requirements review (mid-semester), architecture and design review (end of semester), threshold system demonstrated on staging.
+- **Replay validation** against the August 2025 and December 2025 events (the threshold acceptance test). This milestone needs no live event, which is what makes it the right target for a first semester.
+- **Shadow the Geminids MSQP, 13–15 December 2026.** Participate as operators or monitors if licensed, collect the event's data alongside AF8A's manual process, and use it as the first real end-to-end test case. Watching the existing workflow under load is worth more than any amount of interviewing.
+- **Milestones:** requirements review (mid-semester), architecture and design review, threshold system demonstrated on staging, Geminids data collected.
 
-### Semester 2 (Spring 2028): Integrate, Deploy, Operate
-- PSKReporter automated ingest at production volume; live dashboard; Zenodo deposit integration; public data API.
+### Semester 2 (Spring 2027): Integrate, Deploy, Demonstrate
+- **Parallel-run the Quadrantids MSQP, 2–4 January 2027.** The platform ingests and scores the event live while AF8A runs the manual process, which stays authoritative. Compare the two results and reconcile every difference. A rough edge here is acceptable and expected; that is what a parallel run is for.
+- Reconciliation and hardening against what the Quadrantids exposed; PSKReporter ingest at production volume; live dashboard; Zenodo deposit integration; public data API.
 - Deploy to msqp.hamsci.org on HamSCI infrastructure; security review; accessibility audit against R13.
-- **Run the January 2028 Quadrantids MSQP on the platform**, with AF8A running the manual process in parallel as a control. Compare the two results, and reconcile every difference.
-- Publish results for that event within one week of its close, which is the project's headline demonstration.
+- Publish the Quadrantids results within a week of reconciliation, which is the project's headline demonstration.
 - Handoff: runbook, backup and restore rehearsal, volunteer maintainer walkthrough, open-source release to the HamSCI GitHub organization.
-- Present the project at the 2028 HamSCI Workshop [dates and venue to be announced; recent workshops have been held in March or April].
-- **Milestones:** production readiness review, live event operation, results published, workshop presentation, final report and poster, open-source release.
+- Present the project at the **[2027 HamSCI Workshop](https://hamsci.org/hamsci2027), 17–18 April 2027**, hosted at the University of Scranton.
+- **Milestones:** Quadrantids parallel run, production readiness review, results published, workshop presentation, final report and poster, open-source release.
 
-**Plan semester 2 backward from the Quadrantids.** The January event falls in the first weeks of the spring semester, which is early. The system that runs it has to be built in semester 1. Treat the Quadrantids as a rehearsal under real load and the following months as the window to fix what it exposes.
+**The workshop sets the schedule.** It falls in mid-April, ahead of the end of the spring semester, so the team needs a working system and presentable results about a month before the course's own final deadline. Plan semester 2 backward from 17 April.
+
+**Two consequences of the January date are worth stating plainly.** The system that parallel-runs the Quadrantids has to be built in the fall, which is why the threshold tier is scoped to a replay against past events rather than a live one. And the next MSQP after the Quadrantids is the Eta Aquariids in May 2027, which falls at or after the end of the spring semester. The Quadrantids are therefore the team's one live event inside the course, and the May event is the natural first authoritative run for whoever maintains the platform afterward.
 
 ## 7. Deliverables
 
@@ -176,10 +186,10 @@ The MSQP calendar is set by the sky, and it drives this schedule. Two events fal
 4. Documented, versioned public data API with a published schema and data dictionary.
 5. Automated test suite and continuous integration configuration.
 6. Operations runbook: deployment, backup and restore, monitoring, and incident response, written for a volunteer maintainer.
-7. Validation report: the replay of past events against published results, and the parallel-run comparison from the January 2028 Quadrantids.
+7. Validation report: the replay of past events against published results, and the parallel-run comparison from the January 2027 Quadrantids.
 8. Final capstone report, poster, and public demonstration.
 9. Open-source release to the HamSCI GitHub organization under the MIT license.
-10. A presentation of the project at the 2028 HamSCI Workshop. This is an expectation of the project, and it puts the team's work in front of the scientists and volunteer operators who will use it.
+10. A presentation of the project at the [2027 HamSCI Workshop](https://hamsci.org/hamsci2027), 17–18 April 2027, at the University of Scranton. This is an expectation of the project, and it puts the team's work in front of the scientists and volunteer operators who will use it.
 
 ## 8. What You Will Learn
 
@@ -227,7 +237,8 @@ This project is grant funded. Significant resources are available to help studen
 8. Machine learning meteor scatter classification code: https://github.com/HamSCI/Machine-Learning-Meteor-Scatter-Classification-Code
 9. PSKReporter: https://pskreporter.info
 10. Zenodo, HamSCI community: https://zenodo.org
-11. McKinley, D. W. R. (1961), *Meteor Science and Engineering*, McGraw-Hill, New York.
+11. 2027 HamSCI Workshop, 17–18 April 2027, University of Scranton: https://hamsci.org/hamsci2027
+12. McKinley, D. W. R. (1961), *Meteor Science and Engineering*, McGraw-Hill, New York.
 
 ---
 
