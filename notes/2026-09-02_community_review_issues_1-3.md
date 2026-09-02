@@ -25,7 +25,7 @@ draft replies"*. This note records the verification, the edits, and what is stil
   file (333,916 bytes). A Markdown twin, `Research Questions.md`, sits beside it.
 - **Decision**: link the PDF on `main`. It is a living document, so `main` rather than a SHA (R11).
   Reference 4 keeps the repository root as a secondary link for the reference literature.
-- **Status**: fixed in the working tree, uncommitted.
+- **Status**: fixed in c3f951f, pushed; reply posted. Issue open for NAF to close.
 
 ### #2, "Additional references"
 
@@ -43,7 +43,7 @@ draft replies"*. This note records the verification, the edits, and what is stil
     "Dr. Rob Suggs NN4NT" as the invited meteor scatter tutorial speaker. Same person; cited as NN4NT.
 - **Decision**: both added as references 12 and 13 (McKinley becomes 14); cited by title and
   author in the physics paragraph of section 1, as the two introductions a student reads first.
-- **Status**: done in the working tree, uncommitted.
+- **Status**: done in c3f951f, pushed; reply posted. Issue open for NAF to close.
 
 ### #3, "Observation (my three cents)"
 
@@ -69,7 +69,7 @@ draft replies"*. This note records the verification, the edits, and what is stil
   naming the audience. It has one (lines 5–12). That item was dropped.
 - **Decision** (NAF: "Do the recommended fix"): restructure sections 1 and 2's boundary, define
   every term at first use, add a glossary, move operating conventions to the requirements.
-- **Status**: done in the working tree, uncommitted. NAF has not yet read the rewritten section 1.
+- **Status**: done in c3f951f, pushed; reply posted. NAF has not yet read the rewritten section 1. Issue open for Robert's re-read.
 
 ## Edits made
 
@@ -109,9 +109,10 @@ draft replies"*. This note records the verification, the edits, and what is stil
 
 1. **NAF to read the rewritten section 1 and the glossary** before the replies go out. Reply 3
    says "reviewed by him"; that must be true before posting.
-2. **Commit and push** (`/commit`), then fill the `[SHA after push]` placeholder in reply 1.
-3. **Post the three replies** (NAF, or the assistant on instruction; H7). Do not close #3 by
-   commit message; Robert's re-read is what closes it (R7, `refs #3`).
+2. ~~Commit and push~~ Done: c3f951f (fix) and 040adf8 (log hash), pushed 2026-09-02 22:27 UTC.
+3. ~~Post the three replies~~ Done 22:28 UTC on NAF's instruction; URLs in
+   `2026-09-02_issue_replies_1-3.md`. All three issues remain open for Robert's re-read and NAF's
+   closing (R7, H7).
 4. **Published artifact page** "MSQP Capstone Proposal",
    https://claude.ai/code/artifact/612b740e-294e-4c7e-ac3a-fbcc92292be9, was synchronized to the
    document by the earlier session and is shared by link. An updated HTML mirroring all of the

@@ -1,8 +1,18 @@
 # Drafted replies to community-review issues #1–#3 (roberthipple, 2026-09-02)
 
-Status: **drafts, not posted.** Issues are a human-curated surface (H7); NAF posts or tells the
-assistant to. Each reply carries the A8 trailer. The bracketed commit SHA in reply 1 resolves
-after the fix is committed and pushed (W13, R11).
+Status: **posted 2026-09-02 22:28 UTC** on NAF's instruction (`/commit and push and post
+comments`). Fix committed as c3f951f and pushed first, so reply 1 links the full SHA (R11).
+As posted, the trailer reads "under Nathaniel Frissell's direction and posted on his
+instruction. Decisions are his (A3, A5)." rather than "reviewed by him", because NAF had not yet
+read the rewritten section 1 when he instructed the posting.
+
+Posted comments:
+- #1: https://github.com/HamSCI/msqp.hamsci.org/issues/1#issuecomment-5517324713
+- #2: https://github.com/HamSCI/msqp.hamsci.org/issues/2#issuecomment-5517324884
+- #3: https://github.com/HamSCI/msqp.hamsci.org/issues/3#issuecomment-5517325046
+
+The texts below are the drafts as written before posting; the posted versions differ only in the
+trailer wording above and in reply 1's resolved SHA link.
 
 Issues: https://github.com/HamSCI/msqp.hamsci.org/issues
 
