@@ -1,11 +1,12 @@
 # Draft reply to issue #4 (Rob Suggs, NN4NT), for NAF review before posting
 
-Status: **draft v2, not posted.** Redrafted 2026-09-10 at NAF's request after his review of v1.
+Status: **posted 2026-09-10 ~22:43 UTC** on NAF's instruction (`/commit push and post`), after his review of v1 and the v2 redraft below. Fix committed as c14d00c and pushed first; the posted reply links the full SHA (R11).
+Posted comment: https://github.com/HamSCI/msqp.hamsci.org/issues/4#issuecomment-5626416830
 Issue: https://github.com/HamSCI/msqp.hamsci.org/issues/4
 
 ---
 
-Thanks, Rob. One issue is fine. All ten points are taken, in `docs/project_description.md` at commit [SHA after push] and on the artifact page.
+Thanks, Rob. One issue is fine. All ten points are taken, in `docs/project_description.md` at commit c14d00c (linked by full SHA in the posted version) and on the artifact page.
 
 - **Scatters**, not reflects, in the physics paragraph and glossary.
 - **Non-meteor spots**: new paragraph in section 1 naming Es, F layer, tropo, and aircraft scatter. Whether the mechanism matters for scoring goes to the R5 discussion with AF8A.

@@ -12,8 +12,8 @@ Ten points in one issue. Issues #1–#3 (Robert Hipple) were closed by their rep
 NAF's instruction, 2026-09-10: *"Please address https://github.com/HamSCI/msqp.hamsci.org/issues/4.
 I will want to review any responses before you post. Keep them concise adn to the point."*
 
-Edits are in the working tree, **uncommitted**, pending NAF's review. The reply draft is in
-`notes/2026-09-10_issue_4_reply_draft.md`, **not posted** (H7, NAF's instruction).
+Edits committed as c14d00c and pushed 2026-09-10 22:41 UTC after NAF's review. Reply posted 22:43 UTC on his
+instruction: https://github.com/HamSCI/msqp.hamsci.org/issues/4#issuecomment-5626416830
 
 ## Comment record (P3), verbatim from the issue body
 
@@ -161,6 +161,6 @@ the participant's own Zenodo account, via OAuth.'"*
 
 ## Open items
 
-1. NAF reviews the edits and the reply draft.
-2. `/commit` and push; fill the SHA into the reply; post. Move the artifact share pin to version 4.
-3. Issue #4 stays open for Rob to close.
+1. ~~NAF reviews~~ Done 2026-09-10.
+2. ~~Commit, push, post~~ Done: c14d00c, 3c0f415; comment posted. **Still open: move the artifact share pin to version 4** (NAF, in the artifact view).
+3. Issue #4 stays open for Rob to close (R7, H7).
