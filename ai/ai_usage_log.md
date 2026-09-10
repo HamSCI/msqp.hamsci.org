@@ -72,4 +72,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **Zenodo OAuth**: R7 and the new On R7 note record NAF's decision and the retired alternative (P7). Exact Zenodo OAuth scopes were not verified; flagged for the requirements phase.
   - **Diagram**: bar positions checked (column 54) after inserting ALL.TXT.
   - **Orionid dates** are Rob's (21–22 October 2026); Lyrids stated as "late April" with no date asserted (W13).
-- **Git Hash**: [pending]
+- **Git Hash**: c14d00c
