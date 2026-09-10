@@ -156,11 +156,11 @@ the participant's own Zenodo account, via OAuth.'"*
 - **Artifact page republished** 2026-09-10 as version 4 on NAF's instruction ("Did you update the
   artifact?"), carrying every change above plus the glance tile relabelled "raw PSKReporter
   lines". The read before publishing reported that link viewers see the pinned version and will
-  not see future publishes until the share pin is moved; NAF moves the pin in the artifact view
-  if Rob is to see version 4 through the shared link.
+  not see future publishes until the share pin is moved; NAF moved the pin to version 4 the same
+  day, so the shared link now shows the current text.
 
 ## Open items
 
 1. ~~NAF reviews~~ Done 2026-09-10.
-2. ~~Commit, push, post~~ Done: c14d00c, 3c0f415; comment posted. **Still open: move the artifact share pin to version 4** (NAF, in the artifact view).
+2. ~~Commit, push, post~~ Done: c14d00c, 3c0f415; comment posted. Artifact share pin moved to version 4 by NAF, 2026-09-10 (*"I moved the artifact share to v4!"*).
 3. Issue #4 stays open for Rob to close (R7, H7).
