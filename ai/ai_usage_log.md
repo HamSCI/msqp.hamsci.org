@@ -56,3 +56,20 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **W14 on the rewritten section 1**: 35 sentences, median 21 words, one over 50 and it is the list of research questions.
   - **Published artifact page not updated**: the republish of the shared "MSQP Capstone Proposal" page was denied by the auto-mode permission classifier. The updated HTML is built in the session scratchpad; path recorded in the session note. Live page shows pre-review text until NAF republishes.
 - **Git Hash**: c3f951f
+
+## [2026-09-10 22:41 UTC]
+- **Tool**: Claude (Anthropic), claude-fable-5-1
+- **Session Purpose**: Address HamSCI/msqp.hamsci.org#4, Rob Suggs NN4NT's ten-point review of the project description (terminology, non-meteor propagation in the spot stream, PingJockey and PSKReporter as existing live tools, the Zenodo submission framing, ALL.TXT in the diagram, R6, the R1/R2 conventions note, the 280-million-line volume framing, additional 2027 showers, and a 2026 replacement for the Suggs reference). NAF's instruction: *"Please address https://github.com/HamSCI/msqp.hamsci.org/issues/4. I will want to review any responses before you post. Keep them concise adn to the point."* NAF then reviewed and corrected two passages, decided the Zenodo deposit-ownership question, asked for a redraft of the reply, and instructed `/commit push and post`.
+- **Sections/Files Affected**: `docs/project_description.md` (section 1 opener, physics paragraph, new non-meteor-spots paragraph; section 2 opener, first paragraph, "no live view" and "data submission" subsections rewritten, closing note; section 4 diagram, Ingest, Archive; section 5 R4, R6, R7 rows, notes On R1 and R2, On R4, new On R7; section 6 new note on additional showers; section 8 data-engineering bullet; section 11 glossary PingJockey and Ping entries; reference 12). `CLAUDE.md` (overview paragraph; domain facts: conventions under MSWG review, non-meteor spots). `README.md` (one sentence). New `notes/2026-09-10_community_review_issue_4.md` and `notes/2026-09-10_issue_4_reply_draft.md`. Artifact page republished as version 4.
+- **Nature of Contribution**: Analysis of the review against the document and sources; edits; drafting of the reply and session note; artifact rebuild.
+- **Human Review Status**: Reviewed. NAF read the assessment and the reply drafts, corrected two passages (verbatim in the session note), and selected the Zenodo OAuth option. He has not re-read every edited paragraph line by line.
+- **Verification**:
+  - **PingJockey Central verified** at https://www.pingjockey.net/cgi-bin/pingtalk ("Ping Jockey Central by NØUK"), a scheduling and chat page for meteor scatter operators. The earlier draft's "solitary activity with no way to know" premise was wrong and is gone (H4).
+  - **Suggs 2026 verified**: the PDF's title slide reads "Forward Scatter Meteor Radar: the Science Behind the Pings", "Rob Suggs Ph.D., NN4NT", "HamSCI Workshop March 2026"; the video is titled "Meteor Scatter Science | HamSCI 2026 Workshop". The 2017 NTRS reference was dropped (W1).
+  - **Non-meteor spots**: attributed to Working Group members who have reviewed MSQP audio (Rob's own statement in the issue is the provenance); consistent with Weitzen & Ralston 1988 and the classifier's aircraft-scatter class. No fraction asserted.
+  - **"Tiny fraction" of MSK144 in the raw feed**: stated as "a small fraction" on Rob's authority; no number invented. R4 now asks the team to measure raw and retained volumes.
+  - **NAF's corrections applied verbatim in intent**: "one volunteer" replaced in five places (document, CLAUDE.md, README, artifact); "build on them" replaced with an integrate-or-stand-alone design decision.
+  - **Zenodo OAuth**: R7 and the new On R7 note record NAF's decision and the retired alternative (P7). Exact Zenodo OAuth scopes were not verified; flagged for the requirements phase.
+  - **Diagram**: bar positions checked (column 54) after inserting ALL.TXT.
+  - **Orionid dates** are Rob's (21–22 October 2026); Lyrids stated as "late April" with no date asserted (W13).
+- **Git Hash**: [pending]

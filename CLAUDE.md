@@ -3,7 +3,7 @@
 ## Project Overview
 This repository holds the proposal for, and eventually the implementation of, **msqp.hamsci.org**: an interactive web platform to coordinate HamSCI Meteor Scatter QSO Party (MSQP) events, ingest participant logs and PSKReporter spot data, score entries automatically and reproducibly, publish results within days of an event, and serve the resulting data to the research community through a documented public API.
 
-The work is proposed as a two-semester Computer Science senior capstone project at The University of Scranton. Today the entire surrounding workflow (entry collection, spot interpretation, scoring, results publication) is performed by hand by one HamSCI volunteer, and participants wait three to four months for results.
+The work is proposed as a two-semester Computer Science senior capstone project at The University of Scranton. Today the surrounding workflow (entry collection, spot interpretation, scoring, results publication) is largely manual. It is carried by a small group of volunteers and students, with the amateur radio community analysis falling largely on AF8A and the science analysis on students, volunteers, and researchers. Participants wait three to four months for results.
 
 **PI / project advisor**: Dr. Nathaniel A. Frissell, W2NAF, Department of Physics and Engineering, The University of Scranton
 **Primary stakeholder**: Gary Mikitin, AF8A, HamSCI volunteer; MSQP organizer and scorer
@@ -25,7 +25,8 @@ Facts a session should not have to re-derive. All are verified against the sourc
 - **Mode**: MSK144 only. **Frequencies**: 50.260 MHz (6 m), 28.145 MHz (10 m).
 - **Six events per year**, timed to the Quadrantids (Jan), Eta Aquariids (May), Daytime Arietids (Jun), Southern Delta Aquariids (Jul), Perseids (Aug), Geminids (Dec).
 - **Categories**: two-way (transmit and receive) and monitor (receive only). Fixed locations; no rover or mobile.
-- **Conventions**: dual-band stations alternate bands every 20 minutes (xx:00, xx:20, xx:40); east-pointing antennas transmit on even minutes, west-pointing on odd; receiver AGC off, so that ping decay time is measurable.
+- **Conventions** (under Meteor Scatter Working Group review as of 2026-09-04, HamSCI/msqp.hamsci.org#4; the 20-minute interval may change): dual-band stations alternate bands every 20 minutes (xx:00, xx:20, xx:40); east-pointing antennas transmit on even minutes, west-pointing on odd; receiver AGC off, so that ping decay time is measurable. The platform treats these as per-event registry data.
+- **Not every MSK144 spot is a meteor**: sporadic E, F layer, tropo, and aircraft scatter appear in the same PSKReporter stream and recordings (NN4NT, #4). MSK144 spots are a small fraction of the raw PSKReporter volume; ingest filters before storing.
 - **Data sources for scoring**: PSKReporter spots plus submitted ADIF logs (`wsjtx_log.adi`, and `ALL.TXT`).
 - **Scale reference**: 280 million lines of PSKReporter data captured during the December 2025 event.
 - **Latency today**: Aug 11–12 2025 event → results 16 Nov 2025. Dec 12–13 2025 event → results 15 Apr 2026.

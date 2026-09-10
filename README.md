@@ -8,7 +8,7 @@ Proposed as a two-semester **Computer Science senior capstone project** at The U
 
 MSQP runs six times a year, timed to major meteor showers. Amateur operators around the world work each other on 6 and 10 meters using MSK144, bouncing signals off the ionized trails of meteors, and the resulting logs, spots, and audio recordings feed an active research program on meteor scatter propagation.
 
-Everything around that data is done by hand, by one volunteer. Scoring means reconciling submitted ADIF logs against PSKReporter spot data; the December 2025 event alone captured **280 million lines** of it. The consequence is latency:
+Everything around that data is still largely a manual process, carried by a small group of volunteers and students. Scoring means reconciling submitted ADIF logs against PSKReporter spot data; the December 2025 event alone captured **280 million lines** of it. The consequence is latency:
 
 | Event | Ran | Results published |
 |---|---|---|
