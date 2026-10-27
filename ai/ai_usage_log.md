@@ -73,3 +73,18 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **Diagram**: bar positions checked (column 54) after inserting ALL.TXT.
   - **Orionid dates** are Rob's (21–22 October 2026); Lyrids stated as "late April" with no date asserted (W13).
 - **Git Hash**: c14d00c
+
+## [2026-10-27 14:38 CDT]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Rob Suggs (NN4NT) asked for a tool to analyze WSJT-X MSK144 WAV recordings from the MSQP: plot raw audio and a 72 ms FFT-filtered (500–2800 Hz) amplitude envelope for each file, title each plot with the matching ALL.TXT decodes, and fit the e-folding time of each underdense meteor echo; also to judge whether the FFT filtering is worth running on the full dataset. Earlier in the session: installed radioconda 2025.03.14 (Python 3.12, GNU Radio 3.10) locally and reviewed ephem for shower-radiant az/el (not committed).
+- **Sections/Files Affected**: new `analysis/underdense_decay.py`; new `requirements.txt`; `.gitignore` (adds `data/` so participant logs, recordings and derived plots stay local).
+- **Nature of Contribution**: Code generation and data analysis.
+- **Human Review Status**: Partially reviewed. Rob reviewed all six output plots, listened to 260812_022800.wav, and confirmed the Fresnel-oscillation interpretation of decay ripple; the code itself has not been reviewed line by line.
+- **Verification**:
+  - Ran on six files from the 2026-08-12 Perseids MSQP (one station's ALL.TXT); 7 echoes fitted, τ = 87–271 ms (amplitude e-folding; power τ/2).
+  - Found impulse noise producing false echoes in 2 files; added a 5× local-RMS blanker (≈0.05% of samples). Both false detections removed; real echoes kept 6–12 dB.
+  - Filter vs. no filter: receivers already band-limit above ~3 kHz, so the filter gains ~1 dB. Unfiltered run gave one false echo and missed one decoded echo.
+  - 260812_020130 (decode at −5 dB) has no echo measurable in amplitude; no τ forced.
+  - 260812_022800 decay ripple is Fresnel oscillation per NN4NT (meteor-speed analysis deferred).
+  - Detection thresholds (4 dB peak, 0.2 s rise, 2 s duration, R² ≥ 0.6) were tuned on these six files only; to be reviewed before bulk processing.
+- **Git Hash**: [after commit]

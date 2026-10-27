@@ -244,3 +244,6 @@ CLAUDE.local.md
 
 # Local-only reference material (publisher-provided PDFs; never commit or redistribute)
 reference/
+
+# Local-only working data (participant logs, spots, recordings); never commit
+data/
