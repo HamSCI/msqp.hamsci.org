@@ -87,4 +87,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - 260812_020130 (decode at −5 dB) has no echo measurable in amplitude; no τ forced.
   - 260812_022800 decay ripple is Fresnel oscillation per NN4NT (meteor-speed analysis deferred).
   - Detection thresholds (4 dB peak, 0.2 s rise, 2 s duration, R² ≥ 0.6) were tuned on these six files only; to be reviewed before bulk processing.
-- **Git Hash**: [after commit]
+- **Git Hash**: 98e8e69
