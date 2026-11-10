@@ -101,4 +101,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - `meteor-scatter` facts (`MTS-F-003`, `MTS-F-004`, `MTS-F-030`, 30 s README default) read from `HamSCI/meteor-scatter`, 2026-11-10; the 15 s / 30 s discrepancy is reported, not resolved.
   - Robert Hipple's GitHub profile name reads "Robert Hipple KE8UQV"; callsign as given by NAF. AC0G and AI6VN as given by NAF; no personal names attached to them.
   - All `[NEW]` requirements and the interface flows are proposals, not decisions.
-- **Git Hash**: [fill in after committing]
+- **Git Hash**: d804650 (draft PR HamSCI/msqp.hamsci.org#5; tracking issue #6, assigned to AndrewKusner and roberthipple, on HamSCI project #26)
