@@ -64,3 +64,11 @@ From his public repositories, checked 2026-11-14:
 - W2NAF keeps only open decision 3 (project A's team) and production deploys of A, both of which
   touch the capstone or HamSCI infrastructure. Open decisions 1 and 2 no longer name W2NAF.
 - Open: AC1SN's name, for the README.
+
+## Pull requests scoped to an idea
+
+> "PRs can be scoped a bit bigger. Rather than scoping to one document, they should be scoped to
+> an idea or work effort addressing an issue." (W2NAF, 2026-11-14)
+
+`README.md` "How changes are made" and #6 now say one pull request per idea or work effort, tied
+to an issue, touching whichever documents it needs; each document's owner approves changes to it.

@@ -99,9 +99,9 @@ the item here.
 
 ## How changes are made
 
-- **One pull request per change, from a branch off `main`.** A document's owner opens the pull
-  requests that change it. Anyone else proposes a change to it in a comment, an issue, or a pull
-  request with the owner as reviewer.
+- **One pull request per idea or work effort, from a branch off `main`**, touching whichever
+  documents that idea needs. Tie it to an issue (open one if none exists) and link it in the pull
+  request: `refs #N`, or `closes #N` when the pull request finishes it.
 - **Reviewers are requested automatically** by `.github/CODEOWNERS`: Andrew, Robert, Tom, and
   the working-group leads Rob Suggs, NN4NT, and AC1SN. GitHub skips the author.
 - **`main` needs one approval from someone other than the author**, and any of them can give it.
@@ -109,8 +109,8 @@ the item here.
   lead's approval before it merges.
 - **The author merges once the change is approved.** Nobody merges without an approval, and nobody
   force-pushes. W2NAF reviews when available; no change waits on W2NAF.
-- **Keep a pull request small and to one document** where possible, so it can be reviewed and
-  merged quickly. A change to `interface.md` may also update the matching rows in the other two.
+- **Each document's owner has the final say on it.** A pull request that touches someone else's
+  document needs that owner's approval too.
 
 ## Proposed tracking setup (not yet done)
 

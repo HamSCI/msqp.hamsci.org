@@ -118,3 +118,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: f8ba805 (branch reviews-without-w2naf)
+
+## [2026-11-14 16:12 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Scope requirements pull requests to one idea or work effort tied to an issue, instead of one document (W2NAF, 2026-11-14).
+- **Sections/Files Affected**: `docs/requirements/README.md` (How changes are made), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: pending
