@@ -133,4 +133,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what, capstone boundary, open decision 3), `docs/requirements/msqp-site.md` (one word), `CLAUDE.md` (status line), `notes/2026-11-14_requirements-workflow.md` (addendum).
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
-- **Git Hash**: pending
+- **Git Hash**: ce7f09d (branch capstone-team-of-one)
