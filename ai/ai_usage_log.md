@@ -126,3 +126,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: 0ed8d19 (branch pr-scope-per-idea)
+
+## [2026-11-14 16:21 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Record W2NAF's answer to open decision 3: Andrew Kusner is the only capstone student on the project.
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what, capstone boundary, open decision 3), `docs/requirements/msqp-site.md` (one word), `CLAUDE.md` (status line), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: pending

@@ -72,3 +72,13 @@ From his public repositories, checked 2026-11-14:
 
 `README.md` "How changes are made" and #6 now say one pull request per idea or work effort, tied
 to an issue, touching whichever documents it needs; each document's owner approves changes to it.
+
+## Open decision 3 answered: a capstone team of one
+
+> "Andrew Kusner is the only capstone student working on this project." (W2NAF, 2026-11-14)
+
+Recorded in `docs/requirements/README.md` (decision 3 marked answered and kept in place so decisions
+4 to 6 keep their numbers; "Who decides what"; the capstone boundary), `msqp-site.md` (one word),
+and `CLAUDE.md` (status line). Not changed: `docs/project_description.md`, which still plans for
+2–3 students (its "Team size" row and section 9, "Team Roles"). It is the description as presented,
+and its revision waits until the requirements settle, as `README.md` already says.

@@ -54,9 +54,9 @@ rather than restating it.
 
 | Who | Role | Decides |
 |---|---|---|
-| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone (open decision 3) and production deploys of A |
+| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone, and production deploys of A |
 | Gary Mikitin, AF8A | MSQP organizer and scorer; primary stakeholder | Scoring rules; what counts as an entrant; event semantics |
-| Andrew Kusner | Lead, project A (capstone) | A's requirements and design |
+| Andrew Kusner | Lead, project A, and its only capstone student | A's requirements and design |
 | Robert Hipple, KE8UQV | Lead, project B (volunteer) | B's requirements and design |
 | Both leads together | Owners of the shared documents | `interface.md` and this `README.md`. A change needs both leads' approval |
 | SigMonD maintainers (AC0G, AI6VN) | Owners of the client contract and the node platform | Anything B needs from SigMonD or the contract; consulted on the interface |
@@ -64,8 +64,8 @@ rather than restating it.
 | Tom McMahan, K1FR (`jtm5`) | Meteor-scatter trail geometry and Doppler; works with both leads | Advises both projects and reviews all three documents; proposes requirements where his geometry and Doppler work fits |
 | Other helpers | To be assigned | Join a project through its lead |
 
-**The capstone boundary.** Project A is a graded capstone, so its student team carries the
-majority of A's work and its management. Volunteers can advise, review, and contribute, but A's
+**The capstone boundary.** Project A is a graded capstone, and Andrew Kusner is its only
+capstone student, so he carries the majority of A's work and its management. Volunteers can advise, review, and contribute, but A's
 threshold tier must not depend on volunteer work landing. The interface items sit in A's upper
 tiers for that reason (see `msqp-site.md`).
 
@@ -90,8 +90,9 @@ the item here.
    client contract with its own `deploy.toml` or starts with a shim, as `gmag-webui` does.
 2. **Interface scope for 2026–27** (both leads, with the working-group leads): flows 1 and 2
    only, or flow 3 too (see `interface.md`).
-3. **Project A's team** (W2NAF): Andrew alone, or other students or helpers? Tom McMahan, K1FR,
-   joined both projects on 2026-11-14; whether other students join A is still open.
+3. **Project A's team** (W2NAF). **Answered 2026-11-14 by W2NAF:** "Andrew Kusner is the only
+   capstone student working on this project." Tom McMahan, K1FR, advises both projects as a
+   volunteer. Kept here, marked answered, so the other decisions keep their numbers.
 4. **Meeting cadence** (both leads): proposed, a joint call every two weeks until the Quadrantids.
 5. **Does SigMonD already have a path for flow 3?** (SigMonD maintainers): `hs-uploader` already
    ships to PSWS. Could MSQP observations ride that path rather than a new one?

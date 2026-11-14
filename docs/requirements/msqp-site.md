@@ -5,7 +5,7 @@ Method, tags and IDs: [`README.md`](README.md).
 
 This document restates R1 to R13 from `docs/project_description.md` section 5 under permanent IDs,
 and records what changes now that there is a second project. Each requirement's full text is
-still the project description's until the team's requirements specification (deliverable 1)
+still the project description's until the capstone's requirements specification (deliverable 1)
 replaces it. That specification is where these become testable statements.
 
 ## 1. Context
