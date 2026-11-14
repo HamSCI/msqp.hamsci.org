@@ -54,7 +54,7 @@ rather than restating it.
 
 | Who | Role | Decides |
 |---|---|---|
-| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone |
+| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides what touches the capstone. Makes the hosting changes Andrew cannot: the Linode account (a larger server or more servers) and DNS for msqp.hamsci.org |
 | Gary Mikitin, AF8A | MSQP organizer and scorer; primary stakeholder | Scoring rules; what counts as an entrant; event semantics |
 | Andrew Kusner | Lead, project A, and its only capstone student | A's requirements and design; production deploys to msqp.hamsci.org |
 | Robert Hipple, KE8UQV | Lead, project B (volunteer) | B's requirements and design |

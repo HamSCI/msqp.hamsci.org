@@ -90,3 +90,9 @@ and its revision waits until the requirements settle, as `README.md` already say
 `README.md` "Who decides what": production deploys of A move from W2NAF's row to Andrew's. This
 supersedes the earlier note above that W2NAF keeps production deploys; W2NAF now decides only what
 touches the capstone.
+
+> "Andew would need me to make changes to the linode (like if the nanode were too small and he
+> needed larger VPSs), or changes to the DNS settings." (W2NAF, 2026-11-14)
+
+So W2NAF's row also says W2NAF makes the hosting changes Andrew cannot: the Linode account (a larger
+server or more servers) and DNS for msqp.hamsci.org. Andrew asks for them; they are not reviews.
