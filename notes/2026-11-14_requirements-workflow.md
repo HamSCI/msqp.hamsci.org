@@ -1,0 +1,49 @@
+# 2026-11-14: Requirements move to one pull request per change; Tom McMahan joins
+
+## Decided (W2NAF)
+
+- **PR #5 merges as version 0.1** of the requirements documents, instead of staying open as a
+  shared draft branch. The leads then revise their own documents through their own pull requests.
+  > "Let's merge PR#5 and update Issue 6 to explain the work flow." (W2NAF, 2026-11-14)
+- **Tom McMahan, K1FR (GitHub `jtm5`), works with both Andrew and Robert.** Added as an assignee
+  on #6 by W2NAF on 2026-11-14.
+  > "JTM is Tom McMahan K1FR, who will work with both Andrew and Robert Hipple." (W2NAF, 2026-11-14)
+
+## Why
+
+- Nobody had started on the shared branch four days after #6 was posted, so switching cost only a
+  rewrite of #6.
+- Three people committing to one branch, each appending to `ai/ai_usage_log.md` through `/commit`,
+  would produce a merge conflict for whoever pulls second. Separate branches avoid that.
+- One pull request per document matches ownership, and `main` already requires an approving
+  review, so every change is reviewed.
+- Merging adopts nothing: every document still reads "Status: DRAFT" until its owner changes it.
+
+## Changed
+
+- `docs/requirements/README.md`: status line (merged as 0.1; adoption is by status line); Tom in
+  "Who decides what"; open decision 3 notes Tom; new section "How changes are made".
+- `docs/requirements/node-dashboard.md`: Tom among the stakeholders.
+- Issue #6 rewritten for the new workflow (after #5 merges).
+
+## Where Tom's work may fit (proposals for Tom and the leads)
+
+From his public repositories, checked 2026-11-14:
+
+- `jtm5/ms-trail-geometry`: for a transmitter, receiver, shower radiant and time, where trails can
+  give a specular echo, with a relative rate index through the day. Its README calls it an early
+  prototype, not validated. A possible source for an "expected geometry" view on the node
+  dashboard, or for event context on the site.
+- `jtm5/MS-3D-Visualization` and `MS-3D-Visualization-Notebook`: forward-scatter Doppler for a
+  given trail. Relevant to per-ping measures (`MSD-F-005`).
+- `jtm5/Flex-DAXiqRec`: IQ recording from a Flex radio. Relevant to the audio-retention question
+  in `node-dashboard.md`.
+
+## Open
+
+- Content problems found in review on 2026-11-14, left for the owners' first pull requests: the
+  2026–27 interface scope disagrees between `README.md` (decision 2), `interface.md`, and
+  `msqp-site.md` section 4; `MSD-F-004` (Quadrantids event mode) depends on the site's event feed,
+  which is in the site's objective tier, not its threshold; `MSD-F-007` requires links that
+  `MSI-I-004` makes a stretch item; `MSD-F-001` is timed against the unsettled T/R period.
+- `docs/project_description.md` and `CLAUDE.md` ("no students are recruited") are out of date.

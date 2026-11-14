@@ -88,3 +88,25 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - 260812_022800 decay ripple is Fresnel oscillation per NN4NT (meteor-speed analysis deferred).
   - Detection thresholds (4 dB peak, 0.2 s rise, 2 s duration, R² ≥ 0.6) were tuned on these six files only; to be reviewed before bulk processing.
 - **Git Hash**: 98e8e69
+
+## [2026-11-10 17:23 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: NAF: *"We now have our students and volunteers set for the project. We will actually be dividing the project into two separate projects. One is going to be msqp.hamsci.org (which is currently defined). The other will be a Meteor Scatter-focused dashboard that will run under SigMonD on a local PSWS node. [...] Andrew Kusner will be student in charge of msqp.hamsci.org. roberthipple (KE8UQV) is the volunteer collaborator that will be leading the on-PSWS dashboard. Can you help us work out our new requirements and project managsment?"* Then: *"put this into a draft PR that Robert Hipple and Andrew Kusner can work together on"*, *"write this up into an issue explaining to them how to work on this. Assign the issue to them"*, and *"You can post it to the board."*
+- **Sections/Files Affected**: new `docs/requirements/README.md`, `docs/requirements/msqp-site.md`, `docs/requirements/node-dashboard.md`, `docs/requirements/interface.md`; new `notes/2026-11-10_two-project-requirements.md`. Outside git: a GitHub issue assigned to AndrewKusner and roberthipple, added to HamSCI project #26.
+- **Nature of Contribution**: Draft (requirements and project-management proposal), research (public SigMonD and meteor-scatter repositories).
+- **Human Review Status**: Pending review. Opened as a draft PR for the two leads to revise; NAF approved the structure in conversation but has not read the documents line by line.
+- **Verification**:
+  - R1 to R13 mapping checked against `docs/project_description.md` section 5.
+  - SigMonD facts (requirements template, client contract v0.9 §17.7 and §19, shared sink `psk.spots`, `hs-uploader` targets, `gmag-webui` shim) read from `HamSCI/sigmond` on GitHub, 2026-11-10.
+  - `meteor-scatter` facts (`MTS-F-003`, `MTS-F-004`, `MTS-F-030`, 30 s README default) read from `HamSCI/meteor-scatter`, 2026-11-10; the 15 s / 30 s discrepancy is reported, not resolved.
+  - Robert Hipple's GitHub profile name reads "Robert Hipple KE8UQV"; callsign as given by NAF. AC0G and AI6VN as given by NAF; no personal names attached to them.
+  - All `[NEW]` requirements and the interface flows are proposals, not decisions.
+- **Git Hash**: d804650 (draft PR HamSCI/msqp.hamsci.org#5; tracking issue #6, assigned to AndrewKusner and roberthipple, on HamSCI project #26)
+
+## [2026-11-14 15:50 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Review PR #5 with W2NAF and prepare it to merge as version 0.1, moving the requirements work to one pull request per change; add Tom McMahan, K1FR (`jtm5`), who works with both leads.
+- **Sections/Files Affected**: `docs/requirements/README.md` (status line, Who decides what, open decision 3, new "How changes are made"), `docs/requirements/node-dashboard.md` (stakeholders), `notes/2026-11-14_requirements-workflow.md` (new).
+- **Nature of Contribution**: Review and edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: 6d43c5f (PR HamSCI/msqp.hamsci.org#5)
