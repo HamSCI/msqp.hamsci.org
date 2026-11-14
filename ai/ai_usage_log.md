@@ -149,4 +149,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what), `notes/2026-11-14_requirements-workflow.md` (addendum).
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
-- **Git Hash**: pending
+- **Git Hash**: 97215dd (branch andrew-production-deploys)
