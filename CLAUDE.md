@@ -11,7 +11,7 @@ The work is proposed as a two-semester Computer Science senior capstone project 
 **Funder**: Supports the HamSCI PSWS / DASI effort, funded by NSF grants AGS-2045755, AGS-2432821, AGS-2432822, AGS-2432824, AGS-2432823, AGS-2431666, and OPP-2332427; NASA grants 80NSSC23K1322, 80NSSC25K7026, and 80NSSC26K0051; and Frankford Radio Club and ARDC grants (per the acknowledgment in Frissell, *QST*, August 2026, p. 33).
 **Project period**: Two academic semesters (Fall 2026 – Spring 2027)
 
-**Status**: proposal stage. The Computer Science faculty have not yet been approached, and no students are recruited. `docs/project_description.md` is the document that will be used to make that case.
+**Status**: underway for 2026–27. Andrew Kusner is the only capstone student on the project (W2NAF, 2026-11-14). `docs/project_description.md` is the description as presented to students; it plans for a team of 2–3 and has not been revised for a team of one. The requirements now live in `docs/requirements/` (issue #6).
 
 **Licensing**: source code under the MIT license (this repository's `LICENSE`).
 **Student AI use**: Students will be given Claude Code accounts for this project. Their use is governed by `.claude/rules/ai-governance.md`, University of Scranton academic integrity policy, and the course instructor's rules.
