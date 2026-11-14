@@ -82,3 +82,11 @@ Recorded in `docs/requirements/README.md` (decision 3 marked answered and kept i
 and `CLAUDE.md` (status line). Not changed: `docs/project_description.md`, which still plans for
 2–3 students (its "Team size" row and section 9, "Team Roles"). It is the description as presented,
 and its revision waits until the requirements settle, as `README.md` already says.
+
+## Production deploys are Andrew's
+
+> "Actually, Andrew Kusner has the power to do production deploys to msqp.hamsci.org." (W2NAF, 2026-11-14)
+
+`README.md` "Who decides what": production deploys of A move from W2NAF's row to Andrew's. This
+supersedes the earlier note above that W2NAF keeps production deploys; W2NAF now decides only what
+touches the capstone.

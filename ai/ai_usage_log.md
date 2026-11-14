@@ -142,3 +142,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: f7e8313 (branch name-ac1sn)
+
+## [2026-11-14 16:36 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Record that Andrew Kusner makes production deploys to msqp.hamsci.org (W2NAF, 2026-11-14).
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: pending

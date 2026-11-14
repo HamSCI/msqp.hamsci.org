@@ -54,9 +54,9 @@ rather than restating it.
 
 | Who | Role | Decides |
 |---|---|---|
-| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone, and production deploys of A |
+| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone |
 | Gary Mikitin, AF8A | MSQP organizer and scorer; primary stakeholder | Scoring rules; what counts as an entrant; event semantics |
-| Andrew Kusner | Lead, project A, and its only capstone student | A's requirements and design |
+| Andrew Kusner | Lead, project A, and its only capstone student | A's requirements and design; production deploys to msqp.hamsci.org |
 | Robert Hipple, KE8UQV | Lead, project B (volunteer) | B's requirements and design |
 | Both leads together | Owners of the shared documents | `interface.md` and this `README.md`. A change needs both leads' approval |
 | SigMonD maintainers (AC0G, AI6VN) | Owners of the client contract and the node platform | Anything B needs from SigMonD or the contract; consulted on the interface |
