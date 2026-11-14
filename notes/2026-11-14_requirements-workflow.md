@@ -63,7 +63,7 @@ From his public repositories, checked 2026-11-14:
   already had write access on 2026-11-14, so their approvals count.
 - W2NAF keeps only open decision 3 (project A's team) and production deploys of A, both of which
   touch the capstone or HamSCI infrastructure. Open decisions 1 and 2 no longer name W2NAF.
-- Open: AC1SN's name, for the README.
+- AC1SN is Jay Weitzen (W2NAF, 2026-11-14); added to `README.md` and #6.
 
 ## Pull requests scoped to an idea
 

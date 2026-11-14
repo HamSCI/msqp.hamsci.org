@@ -60,7 +60,7 @@ rather than restating it.
 | Robert Hipple, KE8UQV | Lead, project B (volunteer) | B's requirements and design |
 | Both leads together | Owners of the shared documents | `interface.md` and this `README.md`. A change needs both leads' approval |
 | SigMonD maintainers (AC0G, AI6VN) | Owners of the client contract and the node platform | Anything B needs from SigMonD or the contract; consulted on the interface |
-| HamSCI Meteor Scatter Working Group, led by Rob Suggs, NN4NT (`RobSuggsNN4NT`), and AC1SN (`AC1SN`) | Operating conventions; reviewers | Band alternation, transmit-slot rules, AGC guidance. Either working-group lead may approve a requirements pull request |
+| HamSCI Meteor Scatter Working Group, led by Rob Suggs, NN4NT (`RobSuggsNN4NT`), and Jay Weitzen, AC1SN (`AC1SN`) | Operating conventions; reviewers | Band alternation, transmit-slot rules, AGC guidance. Either working-group lead may approve a requirements pull request |
 | Tom McMahan, K1FR (`jtm5`) | Meteor-scatter trail geometry and Doppler; works with both leads | Advises both projects and reviews all three documents; proposes requirements where his geometry and Doppler work fits |
 | Other helpers | To be assigned | Join a project through its lead |
 
@@ -104,7 +104,7 @@ the item here.
   documents that idea needs. Tie it to an issue (open one if none exists) and link it in the pull
   request: `refs #N`, or `closes #N` when the pull request finishes it.
 - **Reviewers are requested automatically** by `.github/CODEOWNERS`: Andrew, Robert, Tom, and
-  the working-group leads Rob Suggs, NN4NT, and AC1SN. GitHub skips the author.
+  the working-group leads Rob Suggs, NN4NT, and Jay Weitzen, AC1SN. GitHub skips the author.
 - **`main` needs one approval from someone other than the author**, and any of them can give it.
   A change to `interface.md` or this `README.md`, which both leads own, also needs the other
   lead's approval before it merges.

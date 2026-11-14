@@ -134,3 +134,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: ce7f09d (branch capstone-team-of-one)
+
+## [2026-11-14 16:24 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Name AC1SN as Jay Weitzen (W2NAF, 2026-11-14) in the requirements README.
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what; How changes are made), `notes/2026-11-14_requirements-workflow.md` (open item closed).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: f7e8313 (branch name-ac1sn)
