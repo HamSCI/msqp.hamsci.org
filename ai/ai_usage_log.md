@@ -142,3 +142,19 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: f7e8313 (branch name-ac1sn)
+
+## [2026-11-14 16:36 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Record that Andrew Kusner makes production deploys to msqp.hamsci.org (W2NAF, 2026-11-14).
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: 97215dd (branch andrew-production-deploys)
+
+## [2026-11-14 16:38 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Record that W2NAF makes the hosting changes Andrew cannot: the Linode account and DNS for msqp.hamsci.org (W2NAF, 2026-11-14).
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: 7ce64d1 (PR HamSCI/msqp.hamsci.org#12)
