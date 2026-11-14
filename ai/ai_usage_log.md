@@ -109,4 +109,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Sections/Files Affected**: `docs/requirements/README.md` (status line, Who decides what, open decision 3, new "How changes are made"), `docs/requirements/node-dashboard.md` (stakeholders), `notes/2026-11-14_requirements-workflow.md` (new).
 - **Nature of Contribution**: Review and edit.
 - **Human Review Status**: Pending review.
-- **Git Hash**: pending
+- **Git Hash**: 6d43c5f (PR HamSCI/msqp.hamsci.org#5)
