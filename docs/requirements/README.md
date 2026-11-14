@@ -1,7 +1,9 @@
 # MSQP Requirements: Two Projects and the Interface Between Them
 
-**Status: DRAFT for revision by the project leads.** Opened 2026-11-10. Nothing here is adopted
-until it merges through review. First draft by Claude (Anthropic, `claude-opus-5-5`) at
+**Status: DRAFT for revision by the project leads.** Opened 2026-11-10, and merged to `main` on
+2026-11-14 as version 0.1, the starting point for revision. Merging adopted nothing: a document is
+adopted when its owner changes its status line to **Adopted** through a reviewed pull request (see
+"How changes are made"). First draft by Claude (Anthropic, `claude-opus-5-5`) at
 N. A. Frissell's (W2NAF) direction, from `docs/project_description.md` and the public SigMonD and
 `meteor-scatter` repositories. Every requirement below needs a human owner's review.
 
@@ -59,6 +61,7 @@ rather than restating it.
 | Both leads together | Interface owners | `interface.md`. A change needs both leads' approval |
 | SigMonD maintainers (AC0G, AI6VN) | Owners of the client contract and the node platform | Anything B needs from SigMonD or the contract; consulted on the interface |
 | HamSCI Meteor Scatter Working Group | Operating conventions | Band alternation, transmit-slot rules, AGC guidance |
+| Tom McMahan, K1FR (`jtm5`) | Meteor-scatter trail geometry and Doppler; works with both leads | Advises both projects and reviews all three documents; proposes requirements where his geometry and Doppler work fits |
 | Other helpers | To be assigned | Join a project through its lead |
 
 **The capstone boundary.** Project A is a graded capstone, so its student team carries the
@@ -87,11 +90,24 @@ the item here.
    client contract with its own `deploy.toml` or starts with a shim, as `gmag-webui` does.
 2. **Interface scope for 2026–27** (W2NAF, both leads): flows 1 and 2 only, or flow 3 too (see
    `interface.md`).
-3. **Project A's team** (W2NAF): Andrew alone, or other students or helpers?
+3. **Project A's team** (W2NAF): Andrew alone, or other students or helpers? Tom McMahan, K1FR,
+   joined both projects on 2026-11-14; whether other students join A is still open.
 4. **Meeting cadence** (both leads): proposed, a joint call every two weeks until the Quadrantids.
 5. **Does SigMonD already have a path for flow 3?** (SigMonD maintainers): `hs-uploader` already
    ships to PSWS. Could MSQP observations ride that path rather than a new one?
 6. **Prefixes** `MSQP`, `MSD`, `MSI` (SigMonD maintainers): any collision with existing codes?
+
+## How changes are made
+
+- **One pull request per change, from a branch off `main`.** A document's owner opens the pull
+  requests that change it. Anyone else proposes a change to it in a comment, an issue, or a pull
+  request with the owner as reviewer.
+- **`main` needs an approving review**, which the owner requests: W2NAF for `msqp-site.md`, Tom
+  or W2NAF for `node-dashboard.md`, and both leads for `interface.md`. Tom is added as a reviewer
+  on all three, so his comments reach every document.
+- **W2NAF merges.** Nobody else merges, and nobody force-pushes.
+- **Keep a pull request small and to one document** where possible, so it can be reviewed and
+  merged quickly. A change to `interface.md` may also update the matching rows in the other two.
 
 ## Proposed tracking setup (not yet done)
 

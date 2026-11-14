@@ -32,7 +32,8 @@ with the last. PSKReporter shows spots, but not the node-side detail, and not in
 
 ## 4. Stakeholders
 
-Station hosts (the users); Robert Hipple, KE8UQV (lead); SigMonD maintainers AC0G and AI6VN
+Station hosts (the users); Robert Hipple, KE8UQV (lead); Tom McMahan, K1FR (meteor-scatter trail
+geometry and Doppler); SigMonD maintainers AC0G and AI6VN
 (client contract, node platform); `meteor-scatter` maintainers (the data source); AF8A and the
 Meteor Scatter Working Group (event semantics and conventions); project A (interface partner);
 researchers (exports).

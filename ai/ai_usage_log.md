@@ -102,3 +102,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - Robert Hipple's GitHub profile name reads "Robert Hipple KE8UQV"; callsign as given by NAF. AC0G and AI6VN as given by NAF; no personal names attached to them.
   - All `[NEW]` requirements and the interface flows are proposals, not decisions.
 - **Git Hash**: d804650 (draft PR HamSCI/msqp.hamsci.org#5; tracking issue #6, assigned to AndrewKusner and roberthipple, on HamSCI project #26)
+
+## [2026-11-14 15:50 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Review PR #5 with W2NAF and prepare it to merge as version 0.1, moving the requirements work to one pull request per change; add Tom McMahan, K1FR (`jtm5`), who works with both leads.
+- **Sections/Files Affected**: `docs/requirements/README.md` (status line, Who decides what, open decision 3, new "How changes are made"), `docs/requirements/node-dashboard.md` (stakeholders), `notes/2026-11-14_requirements-workflow.md` (new).
+- **Nature of Contribution**: Review and edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: pending
