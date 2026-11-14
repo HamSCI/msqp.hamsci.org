@@ -54,13 +54,13 @@ rather than restating it.
 
 | Who | Role | Decides |
 |---|---|---|
-| N. A. Frissell, W2NAF | PI and project advisor | Scope of both projects; anything touching the capstone; production deploys of A |
+| N. A. Frissell, W2NAF | PI and project advisor; reviewer | Not needed to approve or merge any change. Decides only what touches the capstone (open decision 3) and production deploys of A |
 | Gary Mikitin, AF8A | MSQP organizer and scorer; primary stakeholder | Scoring rules; what counts as an entrant; event semantics |
-| Andrew Kusner | Lead, project A (capstone) | A's requirements and design, with W2NAF |
+| Andrew Kusner | Lead, project A (capstone) | A's requirements and design |
 | Robert Hipple, KE8UQV | Lead, project B (volunteer) | B's requirements and design |
-| Both leads together | Interface owners | `interface.md`. A change needs both leads' approval |
+| Both leads together | Owners of the shared documents | `interface.md` and this `README.md`. A change needs both leads' approval |
 | SigMonD maintainers (AC0G, AI6VN) | Owners of the client contract and the node platform | Anything B needs from SigMonD or the contract; consulted on the interface |
-| HamSCI Meteor Scatter Working Group | Operating conventions | Band alternation, transmit-slot rules, AGC guidance |
+| HamSCI Meteor Scatter Working Group, led by Rob Suggs, NN4NT (`RobSuggsNN4NT`), and AC1SN (`AC1SN`) | Operating conventions; reviewers | Band alternation, transmit-slot rules, AGC guidance. Either working-group lead may approve a requirements pull request |
 | Tom McMahan, K1FR (`jtm5`) | Meteor-scatter trail geometry and Doppler; works with both leads | Advises both projects and reviews all three documents; proposes requirements where his geometry and Doppler work fits |
 | Other helpers | To be assigned | Join a project through its lead |
 
@@ -85,11 +85,11 @@ B's dates are proposals. Robert sets B's schedule, and volunteer time is not a c
 Each needs an answer from the person named. Record the answer in the relevant document and remove
 the item here.
 
-1. **Where B's code lives** (Robert, with the SigMonD maintainers and W2NAF): a new public repo
+1. **Where B's code lives** (Robert, with the SigMonD maintainers): a new public repo
    under `HamSCI`, inside `meteor-scatter`, or inside `sigmond`. Also whether B conforms to the
    client contract with its own `deploy.toml` or starts with a shim, as `gmag-webui` does.
-2. **Interface scope for 2026–27** (W2NAF, both leads): flows 1 and 2 only, or flow 3 too (see
-   `interface.md`).
+2. **Interface scope for 2026–27** (both leads, with the working-group leads): flows 1 and 2
+   only, or flow 3 too (see `interface.md`).
 3. **Project A's team** (W2NAF): Andrew alone, or other students or helpers? Tom McMahan, K1FR,
    joined both projects on 2026-11-14; whether other students join A is still open.
 4. **Meeting cadence** (both leads): proposed, a joint call every two weeks until the Quadrantids.
@@ -102,10 +102,13 @@ the item here.
 - **One pull request per change, from a branch off `main`.** A document's owner opens the pull
   requests that change it. Anyone else proposes a change to it in a comment, an issue, or a pull
   request with the owner as reviewer.
-- **`main` needs an approving review**, which the owner requests: W2NAF for `msqp-site.md`, Tom
-  or W2NAF for `node-dashboard.md`, and both leads for `interface.md`. Tom is added as a reviewer
-  on all three, so his comments reach every document.
-- **W2NAF merges.** Nobody else merges, and nobody force-pushes.
+- **Reviewers are requested automatically** by `.github/CODEOWNERS`: Andrew, Robert, Tom, and
+  the working-group leads Rob Suggs, NN4NT, and AC1SN. GitHub skips the author.
+- **`main` needs one approval from someone other than the author**, and any of them can give it.
+  A change to `interface.md` or this `README.md`, which both leads own, also needs the other
+  lead's approval before it merges.
+- **The author merges once the change is approved.** Nobody merges without an approval, and nobody
+  force-pushes. W2NAF reviews when available; no change waits on W2NAF.
 - **Keep a pull request small and to one document** where possible, so it can be reviewed and
   merged quickly. A change to `interface.md` may also update the matching rows in the other two.
 

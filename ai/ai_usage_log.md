@@ -110,3 +110,11 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Review and edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: 6d43c5f (PR HamSCI/msqp.hamsci.org#5)
+
+## [2026-11-14 16:07 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Take W2NAF out of the critical path for the requirements work: the leads own `README.md` jointly, reviews come from the leads, Tom McMahan (K1FR) and the Meteor Scatter Working Group leads, and the author merges once approved.
+- **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what, open decisions 1 and 2, How changes are made), `.github/CODEOWNERS` (new), `notes/2026-11-14_requirements-workflow.md` (addendum).
+- **Nature of Contribution**: Edit.
+- **Human Review Status**: Pending review.
+- **Git Hash**: f8ba805 (branch reviews-without-w2naf)

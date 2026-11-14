@@ -47,3 +47,20 @@ From his public repositories, checked 2026-11-14:
   which is in the site's objective tier, not its threshold; `MSD-F-007` requires links that
   `MSI-I-004` makes a stretch item; `MSD-F-001` is timed against the unsettled T/R period.
 - `docs/project_description.md` and `CLAUDE.md` ("no students are recruited") are out of date.
+
+## Later the same day: W2NAF steps out of the critical path
+
+> "They can edit the README together. I don't want to do anything but review. I need to be out of
+> the critical path. I even want to get things set up so they can review each other, or have
+> approvals from RobSuggsNN4NT and AC1SN (the HamSCI-Meteor working group leads). The less I need
+> to get involved, the better." (W2NAF, 2026-11-14)
+
+- `README.md` is now owned by both leads, like `interface.md`.
+- Any one approval from Andrew, Robert, Tom, or the working-group leads (`RobSuggsNN4NT`, `AC1SN`)
+  is enough to merge; a change to a shared document also needs the other lead. The author merges.
+- `.github/CODEOWNERS` requests all five as reviewers on any change under `docs/requirements/`.
+  Branch protection is unchanged (one approving review; code-owner review not required). All five
+  already had write access on 2026-11-14, so their approvals count.
+- W2NAF keeps only open decision 3 (project A's team) and production deploys of A, both of which
+  touch the capstone or HamSCI infrastructure. Open decisions 1 and 2 no longer name W2NAF.
+- Open: AC1SN's name, for the README.

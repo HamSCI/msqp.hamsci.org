@@ -1,0 +1,5 @@
+# Reviewers for the requirements documents. See docs/requirements/README.md, "How changes are made".
+# GitHub requests a review from everyone listed (except the pull request's author). Branch
+# protection does not require code-owner review: one approval from any of them is enough, and a
+# change to interface.md or README.md also needs the other lead's approval, by agreement.
+/docs/requirements/ @AndrewKusner @roberthipple @jtm5 @RobSuggsNN4NT @AC1SN
