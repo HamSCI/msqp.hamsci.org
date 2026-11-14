@@ -117,4 +117,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Sections/Files Affected**: `docs/requirements/README.md` (Who decides what, open decisions 1 and 2, How changes are made), `.github/CODEOWNERS` (new), `notes/2026-11-14_requirements-workflow.md` (addendum).
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
-- **Git Hash**: pending
+- **Git Hash**: f8ba805 (branch reviews-without-w2naf)
