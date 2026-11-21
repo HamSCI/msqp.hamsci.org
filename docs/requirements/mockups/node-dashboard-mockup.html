@@ -1,0 +1,718 @@
+<!doctype html>
+<!--
+  MSQP Node Dashboard: clickable mockup for project B (docs/requirements/node-dashboard.md).
+  Sample data only; not connected to a node. Callsigns beginning with Q are fictional.
+  Shown to the project team in November 2026. Illustrates the requirements; does not add to them.
+  [AI-assisted] Built by Claude (Anthropic, claude-opus-5-5) at the direction of Robert Hipple, KE8UQV.
+  To view: download this file and open it in a web browser. It needs no server.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MSQP Node Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a station console. Mockup control bar, station header, event strip, recording-chain strip,
+   then paired panels (activity + map, live decodes + stations), then the planned-later cards. */
+:root{
+  --bg:#edf0f4; --surface:#ffffff; --surface-2:#f5f7fa; --ink:#14202d; --muted:#586577; --line:#d6dce4;
+  --accent:#2350c2; --accent-soft:rgba(35,80,194,.10);
+  --b6:#bf5410; --b10:#08788c; --b6-soft:rgba(191,84,16,.11); --b10-soft:rgba(8,120,140,.11);
+  --ok:#1d7742; --warn:#946200; --warn-soft:rgba(148,98,0,.12);
+  --mock:#5b47a8; --mock-soft:rgba(91,71,168,.08);
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,"Courier New",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c1219; --surface:#131b25; --surface-2:#18222e; --ink:#e3e8ef; --muted:#93a0b0; --line:#28343f;
+    --accent:#86a8ff; --accent-soft:rgba(134,168,255,.14);
+    --b6:#f0a048; --b10:#4cc6dc; --b6-soft:rgba(240,160,72,.13); --b10-soft:rgba(76,198,220,.12);
+    --ok:#52c482; --warn:#e3b341; --warn-soft:rgba(227,179,65,.14);
+    --mock:#b3a4f0; --mock-soft:rgba(179,164,240,.09);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c1219; --surface:#131b25; --surface-2:#18222e; --ink:#e3e8ef; --muted:#93a0b0; --line:#28343f;
+  --accent:#86a8ff; --accent-soft:rgba(134,168,255,.14);
+  --b6:#f0a048; --b10:#4cc6dc; --b6-soft:rgba(240,160,72,.13); --b10-soft:rgba(76,198,220,.12);
+  --ok:#52c482; --warn:#e3b341; --warn-soft:rgba(227,179,65,.14);
+  --mock:#b3a4f0; --mock-soft:rgba(179,164,240,.09);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1280px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--f-mono)}
+.dim{color:var(--muted)}
+
+/* mockup control bar */
+.mockbar{background:var(--mock-soft);border-bottom:1px dashed var(--mock)}
+.mockbar .inner{padding-block:10px;display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:.86rem}
+.mocktag{font-family:var(--f-mono);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mock);border:1px solid var(--mock);border-radius:4px;padding:1px 7px;font-size:.74rem}
+.mocknote{flex:1 1 320px;min-width:0;color:var(--muted)}
+.mockctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--mock);border-radius:7px;overflow:hidden}
+.seg button{background:transparent;border:0;padding:5px 11px;cursor:pointer;font-size:.84rem}
+.seg button[aria-pressed="true"]{background:var(--mock);color:var(--surface)}
+.chk{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.chk input{accent-color:var(--mock);width:16px;height:16px;margin:0}
+
+main .inner{padding-block:18px 48px;display:grid;gap:16px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end}
+.product{font-family:var(--f-display);font-weight:700;font-size:1.65rem;letter-spacing:.01em;line-height:1.1}
+.station{margin-top:4px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.station .call{font-family:var(--f-mono);font-weight:600;color:var(--ink)}
+.badge{font-size:.76rem;border:1px solid var(--line);border-radius:999px;padding:1px 9px;background:var(--surface)}
+.clockbox{text-align:right}
+.clock{font-family:var(--f-mono);font-size:1.9rem;font-weight:500;font-variant-numeric:tabular-nums;line-height:1}
+.clock small{font-size:.9rem;color:var(--muted);margin-left:4px}
+.date{color:var(--muted);font-size:.85rem;margin-top:4px}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.ph{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-bottom:10px}
+.ph h2{font-size:1.08rem;font-weight:600;margin-right:4px}
+.ph .spacer{flex:1}
+.req{font-family:var(--f-mono);font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px;white-space:nowrap}
+.minchip{font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:1px 6px;white-space:nowrap}
+.laterchip{font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--muted);border-radius:4px;padding:0 6px;white-space:nowrap}
+.hide-req .req{display:none}
+.lbl{font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* event */
+.ev{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.3fr);gap:16px 28px;align-items:start}
+.ev-status{display:flex;gap:7px;align-items:center;font-size:.82rem;font-weight:600;color:var(--ok)}
+.ev-status.off{color:var(--muted)}
+.live-dot{width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px var(--surface-2)}
+.ev-name{font-family:var(--f-display);font-weight:700;font-size:1.5rem;margin-top:2px;line-height:1.15}
+.ev-win{color:var(--muted);font-size:.88rem;margin-top:2px}
+.big{font-family:var(--f-mono);font-size:1.55rem;font-weight:500;font-variant-numeric:tabular-nums;margin-top:2px}
+.prog{height:6px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);margin-top:8px;overflow:hidden}
+.prog span{display:block;height:100%;background:var(--accent)}
+.progcap{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums}
+.slotnow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;margin-top:3px}
+.bandtag{font-family:var(--f-display);font-weight:700;font-size:1.3rem}
+.bandtag.b6{color:var(--b6)} .bandtag.b10{color:var(--b10)}
+.slotrange{font-family:var(--f-mono);font-size:.86rem;color:var(--muted)}
+.slots{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;margin-top:8px}
+.slots div{border-radius:4px;padding:3px 0 2px;text-align:center;font-family:var(--f-mono);font-size:.7rem;font-variant-numeric:tabular-nums}
+.slots .s6{background:var(--b6-soft);color:var(--b6)} .slots .s10{background:var(--b10-soft);color:var(--b10)}
+.slots .cur{outline:2px solid currentColor;outline-offset:-2px;font-weight:600}
+.tx{font-size:.84rem;margin-top:8px}
+.ev-foot{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-size:.84rem}
+.feed{display:inline-flex;gap:6px;align-items:center;color:var(--muted)}
+.feed.warn{color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:2px 8px}
+.xlink{color:var(--accent);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:help}
+.ev-foot .grow{flex:1}
+
+/* health strip */
+.health{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.health .lbl{margin-right:4px}
+.pill{display:inline-flex;gap:7px;align-items:center;padding:4px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.82rem;white-space:nowrap}
+.pill b{font-weight:600}
+.pill .v{color:var(--muted);font-variant-numeric:tabular-nums}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.pill.warn{background:var(--warn-soft);border-color:transparent}
+.pill.warn .dot{background:var(--warn);border-radius:1px;transform:rotate(45deg)}
+.pill.warn .v{color:var(--warn)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:16px}
+@media (max-width:940px){.grid{grid-template-columns:minmax(0,1fr)} .ev{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .ev-slotblk{grid-column:1/-1}}
+@media (max-width:560px){.ev{grid-template-columns:minmax(0,1fr)} .clockbox{text-align:left} .product{font-size:1.4rem}}
+
+.chips{display:inline-flex;flex-wrap:wrap;gap:4px}
+.chips button{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-size:.8rem;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.sum{font-size:.86rem;color:var(--muted);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.sum b{color:var(--ink);font-weight:600}
+.chartbox{position:relative;min-width:0}
+.chartbox svg{display:block;max-width:100%}
+.tip{position:absolute;top:2px;pointer-events:none;background:var(--ink);color:var(--surface);font-family:var(--f-mono);font-size:.74rem;padding:3px 7px;border-radius:5px;white-space:nowrap;transform:translateX(-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.8rem;color:var(--muted);margin-top:6px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.sw.b6{background:var(--b6)} .sw.b10{background:var(--b10)} .sw.sweet{background:var(--accent-soft);border:1px solid var(--accent)}
+svg .gridl{stroke:var(--line);stroke-width:1}
+svg .axis{stroke:var(--muted);stroke-width:1}
+svg .tick{fill:var(--muted);font-family:var(--f-mono);font-size:10.5px}
+svg .bl6{fill:var(--b6);font-family:var(--f-display);font-weight:600;font-size:12px}
+svg .bl10{fill:var(--b10);font-family:var(--f-display);font-weight:600;font-size:12px}
+svg .bar6{fill:var(--b6)} svg .bar10{fill:var(--b10)}
+svg .st6{fill:var(--b6-soft);opacity:.55} svg .st10{fill:var(--b10-soft);opacity:.55}
+svg .nowl{stroke:var(--ink);stroke-width:1;stroke-dasharray:2 2}
+svg .hit{fill:transparent}
+
+/* map */
+.mapbox{display:flex;justify-content:center}
+.mapbox svg{display:block;max-width:100%;height:auto}
+svg .sweet{fill:var(--accent-soft)}
+svg .ring{stroke:var(--line);fill:none}
+svg .ringl{fill:var(--muted);font-family:var(--f-mono);font-size:9.5px}
+svg .cmp{fill:var(--muted);font-family:var(--f-display);font-weight:600;font-size:12px}
+svg .node{fill:var(--ink)}
+svg .nodel{fill:var(--ink);font-family:var(--f-mono);font-size:10px;font-weight:600}
+svg .stn{cursor:pointer;outline:none}
+svg .stn .path{stroke-linecap:round;opacity:.32}
+svg .stn.recent .path{opacity:.85}
+svg .g6 .path{stroke:var(--b6)} svg .g10 .path{stroke:var(--b10)}
+svg .g6 .dot,svg .g6 .pulse{fill:var(--b6)} svg .g10 .dot,svg .g10 .pulse{fill:var(--b10)}
+svg .stn .dot{stroke:var(--surface);stroke-width:1.5}
+svg .stn text{fill:var(--ink);font-family:var(--f-mono);font-size:10.5px;paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg .stn.sel text{font-weight:600}
+svg .stn.sel .path{opacity:1;stroke-width:3.5}
+svg .stn.sel .dot{stroke:var(--ink);stroke-width:2}
+svg .stn:focus-visible .dot{stroke:var(--accent);stroke-width:3}
+svg .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(3.2);opacity:0}}
+.info{font-size:.84rem;min-height:2.6em;margin-top:6px;padding:7px 10px;background:var(--surface-2);border-radius:6px;font-variant-numeric:tabular-nums}
+
+/* tables */
+.tblwrap{overflow:auto;max-height:430px;border:1px solid var(--line);border-radius:7px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.84rem}
+th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:6px 9px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:1}
+td{padding:5px 9px;border-bottom:1px solid var(--line);white-space:nowrap;font-family:var(--f-mono);font-size:.8rem}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right}
+td.call{font-weight:600}
+td.msg{color:var(--muted)}
+td.empty{text-align:center;color:var(--muted);font-family:var(--f-body);padding:18px}
+.bp{display:inline-block;border-radius:4px;padding:0 6px;font-weight:600;font-size:.74rem}
+.bp.b6{color:var(--b6);background:var(--b6-soft)} .bp.b10{color:var(--b10);background:var(--b10-soft)}
+td.c6{color:var(--b6)} td.c10{color:var(--b10)}
+tr.fresh td{animation:flash 2.4s ease-out}
+@keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
+#st-body tr{cursor:pointer}
+#st-body tr:hover td{background:var(--surface-2)}
+#st-body tr.sel td{background:var(--accent-soft)}
+.cyc{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;font-size:.82rem;color:var(--muted);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.cycbar{width:90px;height:5px;border-radius:3px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.cycbar span{display:block;height:100%;background:var(--muted)}
+.btn{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:.8rem;cursor:pointer}
+.btn[aria-pressed="true"]{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+
+/* later */
+.later-h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-top:8px}
+.later-h h2{font-size:1.2rem}
+.later-h p{margin:0;color:var(--muted);font-size:.88rem;max-width:68ch}
+.later{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:940px){.later{grid-template-columns:minmax(0,1fr)}}
+.later .panel{border-style:dashed;background:transparent}
+.later p{font-size:.86rem;color:var(--muted);margin:8px 0 0;max-width:62ch}
+.ping svg{display:block;width:100%;height:auto}
+svg .env{fill:none;stroke:var(--b6);stroke-width:1.8}
+svg .envfill{fill:var(--b6-soft)}
+svg .thr{stroke:var(--muted);stroke-dasharray:4 3}
+svg .ann{stroke:var(--ink);stroke-width:1}
+svg .annt{fill:var(--ink);font-family:var(--f-mono);font-size:10px}
+.meas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.meas div{background:var(--surface-2);border-radius:6px;padding:6px 8px}
+.meas b{display:block;font-family:var(--f-mono);font-size:1rem;font-weight:500}
+.cmprow{margin-top:10px;font-size:.84rem}
+.cmprow .cl{display:flex;justify-content:space-between;gap:8px;font-variant-numeric:tabular-nums}
+.cmpbar{display:flex;height:12px;border-radius:3px;overflow:hidden;margin-top:4px;background:var(--surface-2)}
+.cmpbar .b6{background:var(--b6)} .cmpbar .b10{background:var(--b10)}
+.files{margin:8px 0 0;padding:0;list-style:none;font-family:var(--f-mono);font-size:.8rem;display:grid;gap:3px}
+.files li{display:flex;justify-content:space-between;gap:10px;background:var(--surface-2);border-radius:5px;padding:4px 8px}
+.files li span{color:var(--muted)}
+.btn[disabled]{opacity:.55;cursor:not-allowed;margin-top:10px}
+
+footer.panel{font-size:.86rem}
+footer h2{font-size:1.05rem;margin-bottom:8px}
+.cov{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 22px;margin:0;padding:0;list-style:none}
+.cov li{display:flex;gap:9px;align-items:baseline;min-width:0}
+.cov .req{flex:none}
+footer p{color:var(--muted);margin:10px 0 0;max-width:80ch}
+
+@media (prefers-reduced-motion:reduce){
+  svg .pulse{animation:none;opacity:0}
+  tr.fresh td{animation:none;background:var(--accent-soft)}
+}
+</style>
+</head>
+<body>
+
+<div class="mockbar gut">
+  <div class="inner">
+    <span class="mocktag">Mockup</span>
+    <span class="mocknote">Sample data, not connected to a node. Callsigns beginning with Q are fictional; Q prefixes are never issued to stations.</span>
+    <div class="mockctl">
+      <div class="seg" role="group" aria-label="Scenario">
+        <button type="button" id="mode-event" aria-pressed="true">Event in progress</button>
+        <button type="button" id="mode-between" aria-pressed="false">Between events</button>
+      </div>
+      <label class="chk" for="opt-offline"><input type="checkbox" id="opt-offline"> msqp.hamsci.org unreachable</label>
+      <label class="chk" for="opt-req"><input type="checkbox" id="opt-req" checked> Requirement IDs</label>
+    </div>
+  </div>
+</div>
+
+<main class="gut">
+<div class="inner">
+
+  <header class="top">
+    <div>
+      <h1 class="product">MSQP Node Dashboard</h1>
+      <div class="station">
+        <span class="call">Q8NODE</span><span>EN82</span><span>PSWS node · monitor station</span>
+        <span class="badge" title="MSD-Q-003">Local network only</span>
+      </div>
+    </div>
+    <div class="clockbox">
+      <div class="clock" id="clock">--:--:--<small>UTC</small></div>
+      <div class="date" id="date"></div>
+    </div>
+  </header>
+
+  <section class="panel" id="event" aria-label="MSQP event"></section>
+
+  <section class="health" aria-label="Recording chain">
+    <span class="lbl">Recording chain</span><span class="req">MSD-F-009</span>
+    <span id="health" style="display:contents"></span>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="ph">
+        <h2>Decodes per minute</h2><span class="req">MSD-F-002</span><span class="minchip">Quadrantids minimum</span>
+        <span class="spacer"></span>
+        <div class="chips" role="group" aria-label="Time range">
+          <button type="button" data-range="tonight" aria-pressed="true">Tonight</button>
+          <button type="button" data-range="last3h" aria-pressed="false">Last 3 h</button>
+          <button type="button" data-range="gem" aria-pressed="false">Geminids 2026</button>
+        </div>
+      </div>
+      <div class="sum" id="chart-sum"></div>
+      <div class="chartbox" id="chartbox"><div id="chart"></div><div class="tip" id="chart-tip" hidden></div></div>
+      <div class="legend">
+        <span><span class="sw b6"></span>6 m · 50.260 MHz, above the line</span>
+        <span><span class="sw b10"></span>10 m · 28.145 MHz, below the line</span>
+        <span id="stripe-note">Shaded columns: the band two-way stations are on (20-minute slots)</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ph"><h2>Stations heard tonight</h2><span class="req">MSD-F-003</span><span class="spacer"></span><span class="dim" style="font-size:.82rem" id="st-count"></span></div>
+      <div class="mapbox" id="map"></div>
+      <div class="legend">
+        <span><span class="sw b6"></span>Mostly 6 m</span>
+        <span><span class="sw b10"></span>Mostly 10 m</span>
+        <span><span class="sw sweet"></span>800–2000 km, the usual meteor-scatter range</span>
+        <span>Solid path: heard in the last 5 min</span>
+      </div>
+      <div class="info" id="map-info" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="ph">
+        <h2>Live decodes</h2><span class="req">MSD-F-001</span><span class="minchip">Quadrantids minimum</span>
+        <span class="spacer"></span>
+        <div class="chips" role="group" aria-label="Band filter">
+          <button type="button" data-filter="all" aria-pressed="true">Both bands</button>
+          <button type="button" data-filter="6m" aria-pressed="false">6 m</button>
+          <button type="button" data-filter="10m" aria-pressed="false">10 m</button>
+        </div>
+        <button type="button" class="btn" id="pause" aria-pressed="false">Pause</button>
+      </div>
+      <div class="cyc">
+        <span>15 s receive cycles</span>
+        <span class="cycbar" aria-hidden="true"><span id="cyc-bar"></span></span>
+        <span id="cyc-text"></span>
+        <span id="cyc-rule"></span>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>UTC</th><th>Band</th><th>Heard</th><th>Grid</th><th class="num">SNR dB</th><th>Message</th></tr></thead>
+          <tbody id="dec-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ph"><h2>Station list</h2><span class="req">MSD-F-001</span><span class="req">MSD-F-003</span></div>
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>Station</th><th>Grid</th><th class="num">km</th><th class="num">Bearing</th><th class="num">6 m</th><th class="num">10 m</th><th>Last</th></tr></thead>
+          <tbody id="st-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="later-h">
+    <h2>Planned for later</h2>
+    <p>These are SHOULD requirements, outside the Quadrantids minimum. They are drawn here so the team can judge whether they are worth building.</p>
+  </div>
+  <div class="later">
+    <section class="panel ping">
+      <div class="ph"><h2>Per-ping measures</h2><span class="req">MSD-F-005</span><span class="laterchip">Later</span></div>
+      <div id="ping"></div>
+      <div class="meas">
+        <div><span class="lbl">Duration</span><b>340 ms</b></div>
+        <div><span class="lbl">Peak SNR</span><b>+9 dB</b></div>
+        <div><span class="lbl">Decay τ</span><b>120 ms</b></div>
+      </div>
+      <p>Needs the audio. <span class="mono">meteor-scatter</span> deletes each slot's WAV after decoding by default (MTS-F-004), so this depends on a retention setting.</p>
+    </section>
+    <section class="panel">
+      <div class="ph"><h2>Shower comparison</h2><span class="req">MSD-F-006</span><span class="laterchip">Later</span></div>
+      <div id="compare"></div>
+      <p>Compares the same UTC hours, from history kept on the node (MSD-D-001 sets how long).</p>
+    </section>
+    <section class="panel">
+      <div class="ph"><h2>Event export</h2><span class="req">MSD-F-008</span><span class="laterchip">Later</span></div>
+      <ul class="files">
+        <li>decodes.csv <span>every decode, both bands</span></li>
+        <li>stations.csv <span>stations heard, distance, bearing</span></li>
+        <li>event.json <span>event window and conventions</span></li>
+        <li>README.txt <span>format and license</span></li>
+      </ul>
+      <button type="button" class="btn" disabled>Export event bundle</button>
+      <p>For the host's own Zenodo deposit, or an upload to msqp.hamsci.org if interface flow MSI-I-003 is adopted.</p>
+    </section>
+  </div>
+
+  <footer class="panel">
+    <h2>Where each requirement appears</h2>
+    <ul class="cov">
+      <li><span class="req">MSD-F-001</span><span>Live decodes and the station list</span></li>
+      <li><span class="req">MSD-F-002</span><span>Decodes per minute, both bands</span></li>
+      <li><span class="req">MSD-F-003</span><span>Map of stations heard</span></li>
+      <li><span class="req">MSD-F-004</span><span>Event panel: window, time left, band slot</span></li>
+      <li><span class="req">MSD-F-005</span><span>Per-ping measures (later)</span></li>
+      <li><span class="req">MSD-F-006</span><span>Shower comparison (later)</span></li>
+      <li><span class="req">MSD-F-007</span><span>Links to msqp.hamsci.org in the event panel</span></li>
+      <li><span class="req">MSD-F-008</span><span>Event export (later)</span></li>
+      <li><span class="req">MSD-F-009</span><span>Recording chain strip</span></li>
+      <li><span class="req">MSD-Q-002</span><span>Try "msqp.hamsci.org unreachable" above</span></li>
+      <li><span class="req">MSD-Q-003</span><span>"Local network only" badge</span></li>
+      <li><span class="req">MSD-Q-004</span><span>Narrow the window to see the phone layout</span></li>
+    </ul>
+    <p>Not visible on screen: the dashboard only reads the node's spot database (MSD-Q-001) and sends nothing off the node unless the host turns a flow on (MSD-Q-005). The event schedule comes from the msqp.hamsci.org event feed (MSI-I-001); its exact timing fields are still to be settled with project A.</p>
+  </footer>
+
+</div>
+</main>
+
+<script>
+(function(){
+'use strict';
+var MIN=60000, CYC=15000, HOUR=3600000, DAY=86400000;
+function $(id){return document.getElementById(id);}
+function pad(n){return String(n).padStart(2,'0');}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+var DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function hms(t){var d=new Date(t);return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+':'+pad(d.getUTCSeconds());}
+function hm(t){var d=new Date(t);return pad(d.getUTCHours())+':'+pad(d.getUTCMinutes());}
+function dmy(t){var d=new Date(t);return DAYS[d.getUTCDay()]+' '+d.getUTCDate()+' '+MONTHS[d.getUTCMonth()]+' '+d.getUTCFullYear();}
+function dm(t){var d=new Date(t);return d.getUTCDate()+' '+MONTHS[d.getUTCMonth()];}
+function fmt(n){return n.toLocaleString('en-US');}
+function fmtDur(ms){if(ms<0)ms=0;var s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=s%60;
+  return d>0?(d+' d '+pad(h)+' h '+pad(m)+' m'):(h+' h '+pad(m)+' m '+pad(x)+' s');}
+function fmtAgo(ms){var s=Math.max(0,Math.round(ms/1000));if(s<60)return s+' s ago';var m=Math.floor(s/60);if(m<60)return m+' min ago';return Math.floor(m/60)+' h '+(m%60)+' min ago';}
+function mmss(ms){var s=Math.max(0,Math.ceil(ms/1000));return Math.floor(s/60)+':'+pad(s%60);}
+
+var NODE={call:'Q8NODE',grid:'EN82'};
+var EVENT={name:'Quadrantids MSQP',start:Date.UTC(2027,0,2,12),end:Date.UTC(2027,0,4,12)};
+var MODES={event:Date.UTC(2027,0,3,9,37,12),between:Date.UTC(2026,11,20,3,15,40)};
+
+function gridLL(g){return [(g.charCodeAt(1)-65)*10-90+(+g[3])+0.5,(g.charCodeAt(0)-65)*20-180+(+g[2])*2+1];}
+var RAD=Math.PI/180;
+function distBrg(a,b){var la1=a[0]*RAD,lo1=a[1]*RAD,la2=b[0]*RAD,lo2=b[1]*RAD,dl=lo2-lo1;
+  var h=Math.pow(Math.sin((la2-la1)/2),2)+Math.cos(la1)*Math.cos(la2)*Math.pow(Math.sin(dl/2),2);
+  var km=2*6371*Math.asin(Math.sqrt(h));
+  var y=Math.sin(dl)*Math.cos(la2),x=Math.cos(la1)*Math.sin(la2)-Math.sin(la1)*Math.cos(la2)*Math.cos(dl);
+  return [km,(Math.atan2(y,x)/RAD+360)%360];}
+var NODE_LL=gridLL(NODE.grid);
+var STATIONS=[
+  ['Q1MET','FN31',1,.6],['Q2ION','FN20',1,1],['Q4PNG','EM73',.8,.3],['Q0TRL','EM48',1,0],
+  ['Q9LYR','EN50',.5,.8],['Q1DOP','FN42',.9,.5],['Q5BOL','EM12',.7,.7],['Q0GEM','DN70',.6,0],
+  ['Q4ARC','EL96',.5,.6],['Q3VHF','FM18',1,.4],['Q0QDR','EN35',.4,.4],['Q5LEO','EM35',.6,.2],
+  ['Q4TAU','EM95',.3,.7],['Q2NOD','FN13',.7,0]
+].map(function(a){var db=distBrg(NODE_LL,gridLL(a[1]));return {call:a[0],grid:a[1],w:{'6m':a[2],'10m':a[3]},km:Math.round(db[0]),brg:Math.round(db[1])%360};});
+var BYCALL={};STATIONS.forEach(function(s){BYCALL[s.call]=s;});
+function compass(b){return ['N','NE','E','SE','S','SW','W','NW'][Math.round(b/45)%8];}
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function poisson(l,r){var L=Math.exp(-l),k=0,p=1;do{k++;p*=r();}while(p>L);return k-1;}
+function gauss(r){var u=0;while(u===0)u=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*r());}
+
+/* Meteor rates peak near local dawn; the node is at UTC-5. */
+function dawn(t){var local=(((t%DAY)/HOUR)-5+24)%24,dh=Math.abs(local-5.5);dh=Math.min(dh,24-dh);return 0.35+1.4*Math.exp(-Math.pow(dh/2.6,2));}
+function slotBand(t){return Math.floor((t%DAY)/(20*MIN))%2===0?'6m':'10m';}
+function slotStart(t){return t-(t%(20*MIN));}
+function lambda(t,band,ev,mult){var base;
+  if(ev){var act=slotBand(t)===band;base=band==='6m'?(act?.75:.08):(act?.5:.06);} else base=band==='6m'?.12:.08;
+  return base*dawn(t)*mult;}
+function pick(band,r){var tot=0,i;for(i=0;i<STATIONS.length;i++)tot+=STATIONS[i].w[band];var x=r()*tot,last=STATIONS[0];
+  for(i=0;i<STATIONS.length;i++){var s=STATIONS[i];if(s.w[band]<=0)continue;last=s;x-=s.w[band];if(x<=0)return s;}return last;}
+function other(st,r){var o;do{o=STATIONS[Math.floor(r()*STATIONS.length)];}while(o===st);return o;}
+function report(r){var n=Math.round(r()*14-2);return (n<0?'-':'+')+pad(Math.abs(n));}
+function makeMsg(st,r){var x=r(),o=other(st,r);
+  if(x<.3)return ['CQ '+st.call+' '+st.grid,true];
+  if(x<.5)return [o.call+' '+st.call+' '+st.grid,true];
+  if(x<.75)return [o.call+' '+st.call+' '+(r()<.5?'R':'')+report(r),false];
+  if(x<.88)return [o.call+' '+st.call+' RRR',false];
+  return [o.call+' '+st.call+' 73',false];}
+
+var S={mode:'event',offline:false,range:'tonight',filter:'all',paused:false,selected:null,
+  simBase:0,realBase:0,dayStart:0,minutes:[],decodes:[],stats:{},lastCycle:0,lastDec:{'6m':0,'10m':0},
+  seq:0,shownMax:0,newWhilePaused:0,gem:[]};
+function now(){return S.simBase+(Date.now()-S.realBase);}
+function ensureMinute(idx){while(S.minutes.length<=idx)S.minutes.push({'6m':0,'10m':0});}
+
+function gen(t,r,keep){var ev=S.mode==='event';
+  ['6m','10m'].forEach(function(band){var k=poisson(lambda(t,band,ev,1),r);
+    for(var i=0;i<k;i++){var st=pick(band,r),mm=makeMsg(st,r),snr=Math.max(-9,Math.min(18,Math.round(3+5*gauss(r))));
+      var idx=Math.floor((t-S.dayStart)/MIN);ensureMinute(idx);S.minutes[idx][band]++;
+      var s=S.stats[st.call];if(!s){s={'6m':0,'10m':0,last:0};S.stats[st.call]=s;}
+      s[band]++;s.last=t;S.lastDec[band]=t+CYC;
+      if(keep)S.decodes.push({id:++S.seq,t:t,band:band,call:st.call,grid:mm[1]?st.grid:null,snr:snr,msg:mm[0]});
+    }});}
+
+function genGem(n){var r=mulberry32(1213),arr=[];
+  for(var i=0;i<n;i++){var m={'6m':0,'10m':0};
+    for(var j=0;j<4;j++){var t=S.dayStart+i*MIN+j*CYC;m['6m']+=poisson(lambda(t,'6m',true,1.35),r);m['10m']+=poisson(lambda(t,'10m',true,1.35),r);}
+    arr.push(m);}
+  return arr;}
+
+function init(mode){
+  S.mode=mode;S.simBase=MODES[mode];S.realBase=Date.now();S.dayStart=S.simBase-(S.simBase%DAY);
+  S.minutes=[];S.decodes=[];S.stats={};S.seq=0;S.lastDec={'6m':0,'10m':0};S.selected=null;S.newWhilePaused=0;S.paused=false;
+  var r=mulberry32(mode==='event'?20270103:20261220);
+  var first=Math.floor(S.dayStart/CYC),last=Math.floor(S.simBase/CYC)-1,keepFrom=S.simBase-25*MIN;
+  for(var c=first;c<=last;c++){var t=c*CYC;gen(t,r,t>=keepFrom);}
+  S.lastCycle=last;
+  var cur=Math.floor((S.simBase-S.dayStart)/MIN);ensureMinute(cur);
+  S.shownMax=S.seq;
+  S.gem=genGem(cur+240);
+}
+
+function advance(){var t=now(),added=0;
+  while((S.lastCycle+2)*CYC<=t){S.lastCycle++;var before=S.seq;gen(S.lastCycle*CYC,Math.random,true);added+=S.seq-before;}
+  var idx=Math.floor((t-S.dayStart)/MIN),newMin=S.minutes.length<=idx;ensureMinute(idx);
+  if(S.decodes.length>400)S.decodes.splice(0,S.decodes.length-400);
+  return {added:added,newMin:newMin};}
+
+/* ---------- event panel ---------- */
+function linkSpan(text){return '<span class="xlink" tabindex="0" title="Goes live when msqp.hamsci.org publishes event pages (MSI-I-004)">'+text+'</span>';}
+function buildEvent(){var el=$('event');
+  var head='<div class="ph"><h2>MSQP event</h2><span class="req">MSD-F-004</span><span class="req">MSI-I-001</span><span class="minchip">Quadrantids minimum</span></div>';
+  var win='Window '+dm(EVENT.start)+' '+hm(EVENT.start)+' – '+dm(EVENT.end)+' '+hm(EVENT.end)+' UTC <span class="dim">(sample times)</span>';
+  var foot='<div class="ev-foot"><span class="feed" id="ev-feed"></span><span class="grow"></span>'+
+    linkSpan('Event page on msqp.hamsci.org')+linkSpan('Q8NODE in this event')+'<span class="req">MSD-F-007</span></div>';
+  if(S.mode==='event'){
+    el.innerHTML=head+'<div class="ev">'+
+      '<div><div class="ev-status"><span class="live-dot"></span>Event window open</div><div class="ev-name">'+EVENT.name+'</div><div class="ev-win">'+win+'</div></div>'+
+      '<div><div class="lbl">Time remaining</div><div class="big" id="ev-remain"></div><div class="prog"><span id="ev-prog"></span></div>'+
+        '<div class="progcap"><span>'+dm(EVENT.start)+'</span><span id="ev-pct"></span><span>'+dm(EVENT.end)+'</span></div></div>'+
+      '<div class="ev-slotblk"><div class="lbl">Two-way stations are on</div>'+
+        '<div class="slotnow"><span class="bandtag" id="slot-band"></span><span class="slotrange" id="slot-range"></span></div>'+
+        '<div class="slots" id="slot-strip"></div><div class="tx" id="tx-rule"></div></div>'+
+      '</div>'+foot;
+  } else {
+    el.innerHTML=head+'<div class="ev">'+
+      '<div><div class="ev-status off"><span class="live-dot"></span>No event window open</div><div class="ev-name">Next: '+EVENT.name+'</div><div class="ev-win">'+win+'</div></div>'+
+      '<div><div class="lbl">Starts in</div><div class="big" id="ev-remain"></div><div class="ev-win" style="margin-top:6px">Last event: Geminids MSQP, 13–15 Dec 2026</div></div>'+
+      '<div class="ev-slotblk"><div class="lbl">Between events</div><div class="tx" style="margin-top:4px">The node keeps recording. Band slots and transmit minutes appear here while an event window is open. Decodes now are sporadic meteors and other propagation.</div></div>'+
+      '</div>'+foot;
+  }}
+function updateEvent(t){
+  if(S.mode==='event'){
+    var tot=EVENT.end-EVENT.start,f=Math.min(1,Math.max(0,(t-EVENT.start)/tot));
+    $('ev-remain').textContent=fmtDur(EVENT.end-t);
+    $('ev-prog').style.width=(f*100).toFixed(2)+'%';
+    $('ev-pct').textContent=Math.round(f*100)+'% elapsed';
+    var b=slotBand(t),ss=slotStart(t),se=ss+20*MIN,nb=b==='6m'?'10m':'6m';
+    var sb=$('slot-band');sb.textContent=b==='6m'?'6 m':'10 m';sb.className='bandtag '+(b==='6m'?'b6':'b10');
+    $('slot-range').textContent=hm(ss)+'–'+hm(se)+' UTC · '+(nb==='6m'?'6 m':'10 m')+' in '+mmss(se-t);
+    var h='';for(var i=0;i<6;i++){var s0=ss+i*20*MIN,bb=slotBand(s0);h+='<div class="'+(bb==='6m'?'s6':'s10')+(i===0?' cur':'')+'">'+hm(s0)+'</div>';}
+    var strip=$('slot-strip');if(strip.dataset.k!==String(ss)){strip.innerHTML=h;strip.dataset.k=String(ss);}
+    var even=new Date(t).getUTCMinutes()%2===0;
+    $('tx-rule').innerHTML=(even?'<b>Even minute.</b> East-pointing stations transmit; west-pointing stations listen.':'<b>Odd minute.</b> West-pointing stations transmit; east-pointing stations listen.');
+  } else {
+    $('ev-remain').textContent=fmtDur(EVENT.start-t);
+  }
+  var fe=$('ev-feed');
+  if(S.offline){fe.className='feed warn';fe.textContent='msqp.hamsci.org unreachable. Showing the schedule saved '+dm(S.simBase-9*HOUR-12*MIN)+' '+hm(S.simBase-9*HOUR-12*MIN)+' UTC. Everything else works.';}
+  else{fe.className='feed';fe.textContent='Schedule from the msqp.hamsci.org event feed · checked '+fmtAgo(t-(S.simBase-23*MIN));}
+}
+
+/* ---------- health ---------- */
+function pill(ok,label,val){return '<span class="pill'+(ok?'':' warn')+'"><span class="dot"></span><b>'+label+'</b><span class="v">'+val+'</span></span>';}
+function updateHealth(t){var a6=t-S.lastDec['6m'],a10=t-S.lastDec['10m'];
+  $('health').innerHTML=
+    pill(true,'meteor-scatter','running')+
+    pill(true,'Receiver','28.145 + 50.260 MHz')+
+    pill(a6<15*MIN,'Last 6 m decode',S.lastDec['6m']?fmtAgo(a6):'none tonight')+
+    pill(a10<15*MIN,'Last 10 m decode',S.lastDec['10m']?fmtAgo(a10):'none tonight')+
+    pill(true,'PSKReporter uploads','flowing · '+fmtAgo(t%(2*MIN)))+
+    (S.offline?pill(false,'Event schedule','cached copy'):pill(true,'Event schedule','current'));}
+
+/* ---------- live list ---------- */
+function updateCycle(t){var into=t%CYC;$('cyc-bar').style.width=(into/CYC*100).toFixed(1)+'%';
+  $('cyc-text').textContent='next results in '+Math.ceil((CYC-into)/1000)+' s';
+  $('cyc-rule').textContent=S.mode==='event'?((new Date(t).getUTCMinutes()%2===0)?'even minute: east-pointing stations transmit':'odd minute: west-pointing stations transmit'):'';}
+function renderList(){var rows=[],n=0;
+  for(var i=S.decodes.length-1;i>=0&&n<80;i--){var d=S.decodes[i];if(S.filter!=='all'&&d.band!==S.filter)continue;n++;
+    rows.push('<tr'+(d.id>S.shownMax?' class="fresh"':'')+'><td>'+hms(d.t)+'</td><td><span class="bp '+(d.band==='6m'?'b6':'b10')+'">'+(d.band==='6m'?'6 m':'10 m')+'</span></td><td class="call">'+d.call+'</td><td>'+(d.grid||'<span class="dim">—</span>')+'</td><td class="num">'+(d.snr>0?'+':'')+d.snr+'</td><td class="msg">'+esc(d.msg)+'</td></tr>');}
+  $('dec-body').innerHTML=rows.join('')||'<tr><td colspan="6" class="empty">No decodes on this band in the last 25 minutes.</td></tr>';
+  S.shownMax=S.seq;}
+function updatePause(){var b=$('pause');b.setAttribute('aria-pressed',String(S.paused));
+  b.textContent=S.paused?('Resume'+(S.newWhilePaused?' ('+S.newWhilePaused+' new)':'')):'Pause';}
+
+/* ---------- stations ---------- */
+function statList(){return Object.keys(S.stats).map(function(c){return {st:BYCALL[c],s:S.stats[c]};});}
+function renderStations(){var focus=document.activeElement&&document.activeElement.closest?document.activeElement.closest('#st-body tr'):null;
+  var fc=focus?focus.dataset.call:null;
+  var arr=statList().sort(function(a,b){return b.s.last-a.s.last;});
+  $('st-body').innerHTML=arr.map(function(o){var st=o.st,s=o.s;
+    return '<tr data-call="'+st.call+'" tabindex="0" aria-selected="'+(S.selected===st.call)+'"'+(S.selected===st.call?' class="sel"':'')+'><td class="call">'+st.call+'</td><td>'+st.grid+'</td><td class="num">'+fmt(st.km)+'</td><td class="num">'+st.brg+'° '+compass(st.brg)+'</td><td class="num c6">'+(s['6m']||'<span class="dim">0</span>')+'</td><td class="num c10">'+(s['10m']||'<span class="dim">0</span>')+'</td><td>'+hm(s.last)+'</td></tr>';}).join('');
+  $('st-count').textContent=arr.length+' stations';
+  if(fc){var r=document.querySelector('#st-body tr[data-call="'+fc+'"]');if(r)r.focus();}}
+
+/* ---------- map ---------- */
+function circ(cx,cy,r){return 'M'+(cx-r)+','+cy+'a'+r+','+r+' 0 1,0 '+(2*r)+',0a'+r+','+r+' 0 1,0 '+(-2*r)+',0Z';}
+function renderMap(){var box=$('map'),W=Math.max(270,Math.min(box.clientWidth||400,470));
+  var fEl=document.activeElement,fc=(fEl&&fEl.closest&&fEl.closest('#map .stn'))?fEl.closest('#map .stn').getAttribute('data-call'):null;
+  var c=W/2,R=c-26,maxKm=2500,k=R/maxKm,t=now();
+  var h='<svg viewBox="0 0 '+W+' '+W+'" width="'+W+'" height="'+W+'" role="group" aria-label="Map centred on this node: distance and bearing to each station heard">';
+  h+='<path class="sweet" fill-rule="evenodd" d="'+circ(c,c,2000*k)+' '+circ(c,c,800*k)+'"/>';
+  [500,1000,1500,2000,2500].forEach(function(km){var r=km*k;h+='<circle class="ring" cx="'+c+'" cy="'+c+'" r="'+r.toFixed(1)+'"/>';
+    h+='<text class="ringl" x="'+(c+r*0.707+3).toFixed(1)+'" y="'+(c+r*0.707+10).toFixed(1)+'">'+fmt(km)+(km===2500?' km':'')+'</text>';});
+  h+='<line class="gridl" x1="'+c+'" y1="'+(c-R)+'" x2="'+c+'" y2="'+(c+R)+'"/><line class="gridl" x1="'+(c-R)+'" y1="'+c+'" x2="'+(c+R)+'" y2="'+c+'"/>';
+  h+='<text class="cmp" x="'+c+'" y="13" text-anchor="middle">N</text><text class="cmp" x="'+c+'" y="'+(W-4)+'" text-anchor="middle">S</text>';
+  h+='<text class="cmp" x="'+(W-4)+'" y="'+(c+4)+'" text-anchor="end">E</text><text class="cmp" x="4" y="'+(c+4)+'">W</text>';
+  var arr=statList().sort(function(a,b){return a.s.last-b.s.last;});
+  arr.forEach(function(o){var st=o.st,s=o.s,b=st.brg*RAD,d=Math.min(st.km,maxKm)*k;
+    var x=c+d*Math.sin(b),y=c-d*Math.cos(b),dom=s['6m']>=s['10m']?'g6':'g10',age=t-s.last,n=s['6m']+s['10m'];
+    var sw=(1+Math.min(2.4,n/40)).toFixed(2),sel=S.selected===st.call,right=x>c+R*0.55;
+    h+='<g class="stn '+dom+(age<5*MIN?' recent':'')+(sel?' sel':'')+'" data-call="'+st.call+'" tabindex="0" role="button" aria-pressed="'+sel+'" aria-label="'+st.call+', '+st.grid+', '+fmt(st.km)+' kilometres at '+st.brg+' degrees, '+n+' decodes">';
+    h+='<line class="path" x1="'+c+'" y1="'+c+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke-width="'+sw+'"/>';
+    if(age<2*MIN)h+='<circle class="pulse" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4.5"/>';
+    h+='<circle class="dot" cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(sel?6:4.5)+'"/>';
+    h+='<text x="'+(right?x-8:x+8).toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'"'+(right?' text-anchor="end"':'')+'>'+st.call+'</text></g>';});
+  h+='<rect class="node" x="'+(c-5)+'" y="'+(c-5)+'" width="10" height="10" transform="rotate(45 '+c+' '+c+')"/>';
+  h+='<text class="nodel" x="'+(c+9)+'" y="'+(c+16)+'">'+NODE.call+'</text></svg>';
+  box.innerHTML=h;
+  if(fc){var g=box.querySelector('.stn[data-call="'+fc+'"]');if(g)g.focus();}}
+function renderInfo(){var el=$('map-info');
+  if(!S.selected){el.innerHTML='<span class="dim">Select a station on the map or in the station list to see its path.</span>';return;}
+  var st=BYCALL[S.selected],s=S.stats[S.selected];
+  el.innerHTML='<b class="mono">'+st.call+'</b> · '+st.grid+' · '+fmt(st.km)+' km at '+st.brg+'° '+compass(st.brg)+
+    ' · <span style="color:var(--b6)">6 m '+s['6m']+'</span> · <span style="color:var(--b10)">10 m '+s['10m']+'</span> decodes · last heard '+hms(s.last)+' UTC';}
+function select(call){S.selected=S.selected===call?null:call;renderMap();renderStations();renderInfo();}
+
+/* ---------- chart ---------- */
+function series(){var cur=Math.floor((now()-S.dayStart)/MIN);
+  if(S.range==='gem')return {data:S.gem.slice(0,cur+1),i0:0,live:false};
+  var all=S.minutes.slice(0,cur+1);
+  if(S.range==='last3h'){var i0=Math.max(0,cur-179);return {data:all.slice(i0),i0:i0,live:true};}
+  return {data:all,i0:0,live:true};}
+var chartGeom=null;
+function renderChart(){var box=$('chart'),W=Math.max(290,Math.floor(box.clientWidth||600)),H=W<520?210:250;
+  var L=30,Rp=8,T=8,B=22,pw=W-L-Rp,ph=H-T-B,mid=T+ph/2;
+  var sr=series(),data=sr.data,i0=sr.i0,N=Math.max(data.length,1),bw=pw/N;
+  var mx=2,t6=0,t10=0,peak=0,peakI=0;
+  data.forEach(function(m,i){mx=Math.max(mx,m['6m'],m['10m']);t6+=m['6m'];t10+=m['10m'];if(m['6m']+m['10m']>peak){peak=m['6m']+m['10m'];peakI=i;}});
+  var top=Math.ceil(mx/2)*2,k=(ph/2)/top;
+  var h='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img" aria-label="Decodes per minute, 6 metres above the axis and 10 metres below">';
+  if(S.mode==='event'||S.range==='gem'){
+    for(var i=0;i<N;){var t=S.dayStart+(i0+i)*MIN,ss=slotStart(t),end=Math.min(N,i+Math.max(1,Math.round((ss+20*MIN-t)/MIN)));
+      h+='<rect class="'+(slotBand(t)==='6m'?'st6':'st10')+'" x="'+(L+i*bw).toFixed(2)+'" y="'+T+'" width="'+((end-i)*bw).toFixed(2)+'" height="'+ph+'"/>';i=end;}}
+  [top,top/2].forEach(function(v){[mid-v*k,mid+v*k].forEach(function(y){h+='<line class="gridl" x1="'+L+'" x2="'+(W-Rp)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"/>';
+    h+='<text class="tick" x="'+(L-5)+'" y="'+(y+3.5).toFixed(1)+'" text-anchor="end">'+v+'</text>';});});
+  h+='<text class="tick" x="'+(L-5)+'" y="'+(mid+3.5)+'" text-anchor="end">0</text>';
+  var w=Math.max(bw-(bw>3?1:0),0.9),p6='',p10='';
+  data.forEach(function(m,i){var x=(L+i*bw).toFixed(2),hh;
+    if(m['6m']){hh=m['6m']*k;p6+='M'+x+' '+(mid-hh).toFixed(2)+'h'+w.toFixed(2)+'v'+hh.toFixed(2)+'h'+(-w).toFixed(2)+'Z';}
+    if(m['10m']){hh=m['10m']*k;p10+='M'+x+' '+mid+'h'+w.toFixed(2)+'v'+hh.toFixed(2)+'h'+(-w).toFixed(2)+'Z';}});
+  h+='<path class="bar6" d="'+p6+'"/><path class="bar10" d="'+p10+'"/>';
+  h+='<line class="axis" x1="'+L+'" x2="'+(W-Rp)+'" y1="'+mid+'" y2="'+mid+'"/>';
+  var steps=[15,30,60,120,180,360],step=360;for(var si=0;si<steps.length;si++){if(steps[si]*bw>=58){step=steps[si];break;}}
+  for(var j=0;j<N;j++){var tt=S.dayStart+(i0+j)*MIN;if(Math.round(tt/MIN)%step===0){var xx=L+j*bw;
+    h+='<line class="gridl" x1="'+xx.toFixed(1)+'" x2="'+xx.toFixed(1)+'" y1="'+(T+ph)+'" y2="'+(T+ph+4)+'"/>';
+    h+='<text class="tick" x="'+xx.toFixed(1)+'" y="'+(H-5)+'" text-anchor="middle">'+hm(tt)+'</text>';}}
+  h+='<text class="bl6" x="'+(L+6)+'" y="'+(T+14)+'">6 m</text><text class="bl10" x="'+(L+6)+'" y="'+(T+ph-6)+'">10 m</text>';
+  if(sr.live){var nx=L+(N-0.5)*bw;h+='<line class="nowl" x1="'+nx.toFixed(1)+'" x2="'+nx.toFixed(1)+'" y1="'+T+'" y2="'+(T+ph)+'"/>';}
+  h+='<rect class="hit" x="'+L+'" y="'+T+'" width="'+pw+'" height="'+ph+'"/></svg>';
+  box.innerHTML=h;
+  chartGeom={W:W,L:L,bw:bw,N:N,i0:i0,data:data};
+  var lbl=S.range==='gem'?'Geminids MSQP 2026, same UTC hours: ':(S.range==='last3h'?'Last 3 hours: ':'Tonight since 00:00 UTC: ');
+  $('chart-sum').innerHTML=lbl+'<b>'+fmt(t6+t10)+'</b> decodes · <span style="color:var(--b6)">6 m '+fmt(t6)+'</span> · <span style="color:var(--b10)">10 m '+fmt(t10)+'</span>'+
+    (peak?' · busiest minute <b>'+peak+'</b> at '+hm(S.dayStart+(i0+peakI)*MIN):'');
+  $('stripe-note').hidden=!(S.mode==='event'||S.range==='gem');}
+function chartHover(e){var g=chartGeom,tip=$('chart-tip');if(!g)return;var svg=$('chart').querySelector('svg');if(!svg)return;
+  var rc=svg.getBoundingClientRect(),x=(e.clientX-rc.left)*(g.W/rc.width),i=Math.floor((x-g.L)/g.bw);
+  if(i<0||i>=g.N||!g.data[i]){tip.hidden=true;return;}
+  var m=g.data[i];tip.textContent=hm(S.dayStart+(g.i0+i)*MIN)+' UTC · 6 m '+m['6m']+' · 10 m '+m['10m'];
+  tip.hidden=false;var px=(g.L+(i+0.5)*g.bw)*(rc.width/g.W);tip.style.left=Math.max(70,Math.min(rc.width-70,px))+'px';}
+
+/* ---------- later cards ---------- */
+function renderPing(){var r=mulberry32(5),pts=[],x,y;
+  for(x=10;x<=290;x+=2){var base=96+(r()-.5)*5;
+    if(x<46)y=base;else if(x<54)y=base-(x-46)/8*76;else y=Math.min(base,96-76*Math.exp(-(x-54)/40)+(r()-.5)*4);
+    pts.push(x+','+y.toFixed(1));}
+  var line='M'+pts.join(' L'),fill=line+' L290,104 L10,104Z';
+  $('ping').innerHTML='<svg viewBox="0 0 300 120" role="img" aria-label="Sketch of one meteor ping: fast rise, exponential decay">'+
+    '<path class="envfill" d="'+fill+'"/><path class="env" d="'+line+'"/>'+
+    '<line class="thr" x1="10" x2="290" y1="82" y2="82"/><text class="annt" x="288" y="78" text-anchor="end">decode threshold</text>'+
+    '<line class="ann" x1="46" x2="46" y1="104" y2="112"/><line class="ann" x1="146" x2="146" y1="104" y2="112"/><line class="ann" x1="46" x2="146" y1="108" y2="108"/>'+
+    '<text class="annt" x="96" y="119" text-anchor="middle">340 ms</text>'+
+    '<text class="annt" x="60" y="18">+9 dB peak</text></svg>';}
+function renderCompare(){var cur=Math.floor((now()-S.dayStart)/MIN),a={'6m':0,'10m':0},g={'6m':0,'10m':0};
+  for(var i=0;i<=cur;i++){if(S.minutes[i]){a['6m']+=S.minutes[i]['6m'];a['10m']+=S.minutes[i]['10m'];}if(S.gem[i]){g['6m']+=S.gem[i]['6m'];g['10m']+=S.gem[i]['10m'];}}
+  var ta=a['6m']+a['10m'],tg=g['6m']+g['10m'],mx=Math.max(ta,tg,1);
+  function row(name,o,tot){return '<div class="cmprow"><div class="cl"><span>'+name+'</span><b class="mono">'+fmt(tot)+'</b></div><div class="cmpbar" style="width:'+(tot/mx*100).toFixed(1)+'%"><span class="b6" style="flex:'+o['6m']+'"></span><span class="b10" style="flex:'+o['10m']+'"></span></div></div>';}
+  $('compare').innerHTML=row(S.mode==='event'?'Quadrantids 2027, tonight so far':'Tonight so far',a,ta)+row('Geminids 2026, same hours',g,tg);}
+
+/* ---------- loop and wiring ---------- */
+function tickUI(){var t=now();
+  $('clock').innerHTML=hms(t)+'<small>UTC</small>';$('date').textContent=dmy(t);
+  updateEvent(t);updateHealth(t);updateCycle(t);}
+function renderAll(){buildEvent();tickUI();renderChart();renderMap();renderStations();renderList();renderInfo();renderCompare();updatePause();}
+
+function setMode(m){$('mode-event').setAttribute('aria-pressed',String(m==='event'));$('mode-between').setAttribute('aria-pressed',String(m==='between'));init(m);renderAll();}
+$('mode-event').addEventListener('click',function(){setMode('event');});
+$('mode-between').addEventListener('click',function(){setMode('between');});
+$('opt-offline').addEventListener('change',function(e){S.offline=e.target.checked;tickUI();});
+$('opt-req').addEventListener('change',function(e){document.body.classList.toggle('hide-req',!e.target.checked);});
+document.querySelectorAll('[data-range]').forEach(function(b){b.addEventListener('click',function(){S.range=b.dataset.range;
+  document.querySelectorAll('[data-range]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});renderChart();});});
+document.querySelectorAll('[data-filter]').forEach(function(b){b.addEventListener('click',function(){S.filter=b.dataset.filter;
+  document.querySelectorAll('[data-filter]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});S.shownMax=S.seq;renderList();});});
+$('pause').addEventListener('click',function(){S.paused=!S.paused;if(!S.paused){S.newWhilePaused=0;renderList();}updatePause();});
+function act(e,sel){var el=e.target.closest(sel);if(!el)return;if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;if(e.type==='keydown')e.preventDefault();select(el.getAttribute('data-call'));}
+$('map').addEventListener('click',function(e){act(e,'.stn');});
+$('map').addEventListener('keydown',function(e){act(e,'.stn');});
+$('st-body').addEventListener('click',function(e){act(e,'tr[data-call]');});
+$('st-body').addEventListener('keydown',function(e){act(e,'tr[data-call]');});
+$('chartbox').addEventListener('pointermove',chartHover);
+$('chartbox').addEventListener('pointerleave',function(){$('chart-tip').hidden=true;});
+
+var raf=0;function onResize(){cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){renderChart();renderMap();});}
+if(window.ResizeObserver){var ro=new ResizeObserver(onResize);ro.observe($('chartbox'));ro.observe($('map').parentElement);}
+else window.addEventListener('resize',onResize);
+
+init('event');renderPing();renderAll();
+setInterval(function(){var r=advance();tickUI();
+  if(r.added){if(!S.paused)renderList();else{S.newWhilePaused+=r.added;updatePause();}renderStations();renderMap();renderCompare();}
+  if(r.added||r.newMin)renderChart();},1000);
+})();
+</script>
+</body>
+</html>

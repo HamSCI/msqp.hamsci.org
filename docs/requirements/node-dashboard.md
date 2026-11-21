@@ -8,6 +8,12 @@ SigMonD
 in short form. When B's code repository is decided, this file moves there as its
 `docs/REQUIREMENTS.md`, and the SigMonD requirements index gains a line for it.
 
+**Mockup.** [`mockups/node-dashboard-mockup.html`](mockups/node-dashboard-mockup.html) is a
+clickable mockup of the dashboard with sample data, shown to the project team in November 2026.
+It labels each panel with the requirement it illustrates. It illustrates this document and does
+not add requirements to it. GitHub shows the file as source code: download it and open it in a
+web browser to use it. If B's code moves to its own repository, the mockup moves with this file.
+
 ## 1. Context and problem
 
 A PSWS node running SigMonD's `meteor-scatter` client decodes MSK144 on 28.145 and 50.260 MHz and
