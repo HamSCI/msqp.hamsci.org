@@ -171,4 +171,4 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
   - **Conventions match the sources**: 50.260 and 28.145 MHz, 20-minute band alternation, east-pointing stations transmitting on even minutes (`CLAUDE.md`); 15 s T/R cycles, matching the `meteor-scatter` README and `MTS-F-003`.
   - **Requirement labels match `node-dashboard.md`**: MSD-F-001 to MSD-F-009, MSD-Q-002 to MSD-Q-004, MSI-I-001, MSI-I-004. Features marked SHOULD (F-005, F-006, F-008) are shown as "Later".
   - **Not run through an automated script check**: Node.js is not installed on this machine, so the script was checked by Robert loading the page, not by a linter.
-- **Git Hash**: [fill in after committing]
+- **Git Hash**: daee32f (branch node-dashboard-mockup)
