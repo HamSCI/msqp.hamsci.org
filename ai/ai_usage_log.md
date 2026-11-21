@@ -158,3 +158,17 @@ Required per University of Scranton AI Policy, HamSCI Generative AI Use Agreemen
 - **Nature of Contribution**: Edit.
 - **Human Review Status**: Pending review.
 - **Git Hash**: 7ce64d1 (PR HamSCI/msqp.hamsci.org#12)
+
+## [2026-11-21 21:15 UTC]
+- **Tool**: Claude (Anthropic), claude-opus-5-5
+- **Session Purpose**: Build a clickable mockup of the project B node dashboard for Robert Hipple, KE8UQV, to present to the project team, and store it in the repository for the record after the team reviewed it favorably (HamSCI/msqp.hamsci.org#13).
+- **Sections/Files Affected**: `docs/requirements/mockups/node-dashboard-mockup.html` (new); `docs/requirements/node-dashboard.md` (new "Mockup" paragraph under the header; no requirement changed); `ai/ai_usage_log.md` (this entry).
+- **Nature of Contribution**: Design and code generation (the mockup, a single HTML file with inline CSS and JavaScript and simulated sample data); edit (the pointer paragraph).
+- **Human Review Status**: Partially reviewed. Robert directed the work and reviewed the mockup in a browser, and the project team reviewed it in a meeting. The repository copy differs from the reviewed page only by a standard HTML document wrapper and a provenance comment.
+- **Verification**:
+  - **No real operators appear.** Every callsign in the sample data begins with Q, a prefix never issued to stations; the node is the fictional Q8NODE in grid EN82. The page says so.
+  - **All data is simulated** and labeled "Mockup, sample data" on the page. The event window times are marked as sample times; the Quadrantids dates (2–4 Jan 2027) and the Geminids dates (13–15 Dec 2026) match `CLAUDE.md`.
+  - **Conventions match the sources**: 50.260 and 28.145 MHz, 20-minute band alternation, east-pointing stations transmitting on even minutes (`CLAUDE.md`); 15 s T/R cycles, matching the `meteor-scatter` README and `MTS-F-003`.
+  - **Requirement labels match `node-dashboard.md`**: MSD-F-001 to MSD-F-009, MSD-Q-002 to MSD-Q-004, MSI-I-001, MSI-I-004. Features marked SHOULD (F-005, F-006, F-008) are shown as "Later".
+  - **Not run through an automated script check**: Node.js is not installed on this machine, so the script was checked by Robert loading the page, not by a linter.
+- **Git Hash**: [fill in after committing]
